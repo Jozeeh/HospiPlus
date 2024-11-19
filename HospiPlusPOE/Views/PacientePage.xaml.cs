@@ -51,7 +51,9 @@ namespace PlusHospi.Views
             datagridPacientes.ItemsSource = Pacientes;
         }
 
-
+        //===============================
+        //MÉTODO PARA LIMPIAR LOS CAMPOS
+        //===============================
         private void LimpiarCampos()
         {
             NombreTextBox.Clear();
