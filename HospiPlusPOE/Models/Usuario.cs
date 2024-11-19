@@ -16,6 +16,7 @@ namespace HospiPlusPOE.Models
         public string Nickname { get; set; }
         public string Telefono { get; set; }
         public string Password { get; set; }
+        public string Estado { get; set; }
 
     }
 }

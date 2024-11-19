@@ -23,6 +23,9 @@ namespace HospiPlusPOE
         public AdminView()
         {
             InitializeComponent();
+
+            //Navega a la vista de usuarios al iniciar la ventana
+            AbrirUsuarios_Click(null, null);
         }
 
         // Minimiza la ventana

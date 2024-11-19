@@ -28,6 +28,9 @@ namespace PlusHospi.Views
             btnCancelarEditar.Visibility = Visibility.Hidden;
         }
 
+        //==========================================================
+        //METODO PARA MOSTRAR LOS USUARIOS DESDE UsuarioController
+        //==========================================================
         public void MostrarUsuarios()
         {
             //Obtenemos los usuarios de la base de datos
@@ -49,7 +52,10 @@ namespace PlusHospi.Views
             datagridUsuario.ItemsSource = Usuarios;
         }
 
-        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        //======================================================
+        //BOTON PARA DESACTIVAR USUARIO DESDE UsuarioController
+        //======================================================
+        private void btnDesactivar_Click(object sender, RoutedEventArgs e)
         {
             //Obtenemos el usuario seleccionado (el ? es para que no haya error si no se selecciona nada)
             Usuario? usuarioSeleccionado = datagridUsuario.SelectedItem as Usuario;
@@ -57,16 +63,62 @@ namespace PlusHospi.Views
             if (usuarioSeleccionado == null)
             {
                 MessageBox.Show("Por favor, seleccione un usuario", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
 
             } else
             {
                 //Ejecutamos el método de EliminarUsuario en UsuarioController
-                new UsuarioController().EliminarUsuario(usuarioSeleccionado.ID_Usuario);
+                new UsuarioController().DesactivarUsuario(usuarioSeleccionado.ID_Usuario);
 
                 //Actualizamos el DataGrid
                 MostrarUsuarios();
             }
+        }
+
+        //====================================================
+        //BOTON PARA AGREGAR USUARIO DESDE UsuarioController
+        //====================================================
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            //Obtenemos los valores de los TextBox
+            string nombre = txtNombre.Text;
+            string apellido = txtApellido.Text;
+            string rol = cmbRol.Text;
+            string nickname = txtNickname.Text;
+            string correo = txtCorreo.Text;
+            string telefono = txtTelefono.Text;
+            string password = txtPassword.Password;
+
+            //Validamos que los campos no estén vacíos
+            if (nombre == "" || apellido == "" || rol == "" || nickname == "" || correo == "" || telefono == "" || password == "")
+            {
+                MessageBox.Show("Por favor, llene todos los campos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            //Ejecutamos el método de AgregarUsuario en UsuarioController
+            var validacion = new UsuarioController().AgregarUsuario(nombre, apellido, rol, nickname, correo, telefono, password);
+
+            //Si el usuario se agrega correctamente, limpiamos los campos y actualizamos el DataGrid
+            if (validacion == true)
+            {
+                //Actualizamos el DataGrid
+                LimpiarCampos();
+                MostrarUsuarios();
+            }
+        }
+
+        //============================
+        //METODO PARA LIMPIAR CAMPOS
+        //============================
+        public void LimpiarCampos()
+        {
+            txtNombre.Clear();
+            txtApellido.Clear();
+            cmbRol.SelectedIndex = -1;
+            txtNickname.Clear();
+            txtCorreo.Clear();
+            txtTelefono.Clear();
+            txtPassword.Clear();
         }
     }
 }

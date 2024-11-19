@@ -39,7 +39,7 @@ namespace HospiPlusPOE.Controllers
             using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
             {
                 conexion.Open();
-                string query = "SELECT * FROM Usuario";
+                string query = "SELECT * FROM Usuario WHERE Estado = 'Activo'";
 
                 using (SqlCommand command = new SqlCommand(query, conexion))
                 {
@@ -66,33 +66,79 @@ namespace HospiPlusPOE.Controllers
         }
 
         //=================================
-        //METODO PARA ELIMINAR UN USUARIOS
+        //METODO PARA AGREGAR UN USUARIO
         //=================================
-        public bool EliminarUsuario(int idUsuarioSeleccionado)
+        public bool AgregarUsuario(string nombre, string apellido, string rol, string nickname, string correo, string telefono, string password)
         {
-            var usuarioEliminado = false;
+            bool usuarioAgregado = false;
 
-            //Preguntamos si quiere eliminar el usuario
-            MessageBoxResult result = MessageBox.Show("¿Está seguro que desea eliminar este usuario?", "Eliminar Usuario", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            //En caso sea si eliminamos el usuario de la base de datos
-            if (result == MessageBoxResult.Yes)
+            //Agregamos el usuario a la base de datos
+            try
             {
                 using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
                 {
                     conexion.Open();
-                    string query = "DELETE FROM Usuario WHERE ID_Usuario = @idUsuario";
+                    string query = "INSERT INTO Usuario (Nombre, Apellido, Rol, Nickname, Correo, Telefono, Password, Estado) VALUES (@nombre, @apellido, @rol, @nickname, @correo, @telefono, @password, @estado)";
 
                     using (SqlCommand command = new SqlCommand(query, conexion))
                     {
-                        command.Parameters.AddWithValue("@idUsuario", idUsuarioSeleccionado);
+                        command.Parameters.AddWithValue("@nombre", nombre);
+                        command.Parameters.AddWithValue("@apellido", apellido);
+                        command.Parameters.AddWithValue("@rol", rol);
+                        command.Parameters.AddWithValue("@nickname", nickname);
+                        command.Parameters.AddWithValue("@correo", correo);
+                        command.Parameters.AddWithValue("@telefono", telefono);
+                        command.Parameters.AddWithValue("@password", password);
+                        command.Parameters.AddWithValue("@estado", "Activo");
                         command.ExecuteNonQuery();
+
+                        usuarioAgregado = true;
                         conexion.Close();
-                        usuarioEliminado = true;
+                        MessageBox.Show("Usuario agregado correctamente", "Usuario agregado", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }
-            return usuarioEliminado;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar el usuario: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return usuarioAgregado;
+        }
+
+
+        //===================================
+        //METODO PARA DESACTIVAR UN USUARIOS
+        //===================================
+        public void DesactivarUsuario(int idUsuarioSeleccionado)
+        {
+            //Preguntamos si quiere eliminar el usuario
+            MessageBoxResult result = MessageBox.Show("¿Está seguro que desea desactivar este usuario?", "Desactivar Usuario", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            //En caso sea si eliminamos el usuario de la base de datos
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                    {
+                        conexion.Open();
+                        string query = "UPDATE Usuario SET Estado = 'Inactivo' WHERE ID_Usuario = 6;";
+
+                        using (SqlCommand command = new SqlCommand(query, conexion))
+                        {
+                            command.Parameters.AddWithValue("@idUsuario", idUsuarioSeleccionado);
+                            command.ExecuteNonQuery();
+                            conexion.Close();
+
+                            MessageBox.Show("Usuario desactivado correctamente", "Usuario desactivado", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
+                } catch (Exception ex)
+                {
+                    MessageBox.Show("Error al desactivar el usuario: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
     }
