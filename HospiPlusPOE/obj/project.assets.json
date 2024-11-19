@@ -47,6 +47,18 @@
           }
         }
       },
+      "FontAwesome.Sharp/6.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0-windows7.0/FontAwesome.Sharp.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/FontAwesome.Sharp.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App"
+        ]
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -625,6 +637,23 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "FontAwesome.Sharp/6.6.0": {
+      "sha512": "bJCb2x73UC1nD9+9iMLaUy6Ujf9Pf+buL6FHwVnaoDYT4CQNLazz59hO5gQ0+SMSW0G+ZXmjjShOYr3Jn2UZiw==",
+      "type": "package",
+      "path": "fontawesome.sharp/6.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fontawesome.sharp.6.6.0.nupkg.sha512",
+        "fontawesome.sharp.nuspec",
+        "lib/net472/FontAwesome.Sharp.dll",
+        "lib/net48/FontAwesome.Sharp.dll",
+        "lib/net6.0-windows7.0/FontAwesome.Sharp.dll",
+        "lib/net7.0-windows7.0/FontAwesome.Sharp.dll",
+        "lib/net8.0-windows7.0/FontAwesome.Sharp.dll",
+        "lib/netcoreapp3.1/FontAwesome.Sharp.dll"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -1683,6 +1712,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
+      "FontAwesome.Sharp >= 6.6.0",
       "Microsoft.Data.SqlClient >= 5.2.2"
     ]
   },
@@ -1692,11 +1722,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ja314\\OneDrive\\Desktop\\POE-Proyecto\\HospiPlusPOE\\HospiPlusPOE\\HospiPlusPOE.csproj",
+      "projectUniqueName": "C:\\Users\\ja314\\OneDrive\\Desktop\\POE-Proyecto\\HospiPlusPoe\\HospiPlusPOE\\HospiPlusPOE.csproj",
       "projectName": "HospiPlusPOE",
-      "projectPath": "C:\\Users\\ja314\\OneDrive\\Desktop\\POE-Proyecto\\HospiPlusPOE\\HospiPlusPOE\\HospiPlusPOE.csproj",
+      "projectPath": "C:\\Users\\ja314\\OneDrive\\Desktop\\POE-Proyecto\\HospiPlusPoe\\HospiPlusPOE\\HospiPlusPOE.csproj",
       "packagesPath": "C:\\Users\\ja314\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ja314\\OneDrive\\Desktop\\POE-Proyecto\\HospiPlusPOE\\HospiPlusPOE\\obj\\",
+      "outputPath": "C:\\Users\\ja314\\OneDrive\\Desktop\\POE-Proyecto\\HospiPlusPoe\\HospiPlusPOE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ja314\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1730,6 +1760,10 @@
       "net8.0-windows7.0": {
         "targetAlias": "net8.0-windows",
         "dependencies": {
+          "FontAwesome.Sharp": {
+            "target": "Package",
+            "version": "[6.6.0, )"
+          },
           "Microsoft.Data.SqlClient": {
             "target": "Package",
             "version": "[5.2.2, )"

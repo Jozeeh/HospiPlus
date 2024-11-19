@@ -55,3 +55,7 @@ C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPOE\HospiPlusPOE\bin\Debug
 C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPOE\HospiPlusPOE\bin\Debug\net8.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPOE\HospiPlusPOE\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
 C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPOE\HospiPlusPOE\obj\Debug\net8.0-windows\HospiPlu.8E5B167D.Up2Date
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\HospiPlusPOE.sourcelink.json
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\Estilos\UIcolores.baml
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\AdminView.g.cs
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\Estilos\EstilosBotones.baml

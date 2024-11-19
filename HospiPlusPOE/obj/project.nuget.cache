@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "u0Lje0OkPuw=",
+  "dgSpecHash": "MhRgzCsXf3k=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ja314\\OneDrive\\Desktop\\POE-Proyecto\\HospiPlusPOE\\HospiPlusPOE\\HospiPlusPOE.csproj",
+  "projectFilePath": "C:\\Users\\ja314\\OneDrive\\Desktop\\POE-Proyecto\\HospiPlusPoe\\HospiPlusPOE\\HospiPlusPOE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ja314\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\ja314\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\ja314\\.nuget\\packages\\fontawesome.sharp\\6.6.0\\fontawesome.sharp.6.6.0.nupkg.sha512",
     "C:\\Users\\ja314\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\ja314\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\ja314\\.nuget\\packages\\microsoft.data.sqlclient\\5.2.2\\microsoft.data.sqlclient.5.2.2.nupkg.sha512",
