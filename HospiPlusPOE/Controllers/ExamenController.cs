@@ -123,5 +123,44 @@ namespace HospiPlusPOE.Controllers
             return examenes;
         }
 
+        //=================================
+        //MÉTODO PARA AGREGAR UN EXAMEN
+        //=================================
+        public bool AgregarExamen(int idFkPaciente, string tipo, string resultado, DateTime fecha)
+        {
+            bool examenAgregado = false;
+
+            try
+            {
+                //Insertamos el examen en la base de datos
+                using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                {
+                    conexion.Open();
+                    string query = "INSERT INTO Examen (ID_FK_Paciente, Tipo, Resultado, Fecha) VALUES (@ID_FK_Paciente, @Tipo, @Resultado, @Fecha)";
+
+                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    {
+                        command.Parameters.AddWithValue("@ID_FK_Paciente", idFkPaciente);
+                        command.Parameters.AddWithValue("@Tipo", tipo);
+                        command.Parameters.AddWithValue("@Resultado", resultado);
+                        command.Parameters.AddWithValue("@Fecha", fecha);
+
+                        command.ExecuteNonQuery();
+                    }
+                    conexion.Close();
+                    examenAgregado = true;
+                }
+
+                MessageBox.Show("Examen agregado correctamente");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar examen: " + ex.Message);
+            }
+
+            return examenAgregado;
+        }
+
     }
 }

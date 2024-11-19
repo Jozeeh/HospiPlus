@@ -18,6 +18,11 @@ namespace PlusHospi.Views
         public ExamenPage()
         {
             InitializeComponent();
+
+            //Ocultamos confirmar editar y cancelar editar
+            btnConfirmarEditar.Visibility = Visibility.Hidden;
+            btnCancelarEditar.Visibility = Visibility.Hidden;
+
         }
 
 
@@ -27,7 +32,6 @@ namespace PlusHospi.Views
             cmbTipoExamen.SelectedIndex = -1;
             dateFechaExamen.SelectedDate = null;
             cmbResultadoExamen.SelectedIndex = -1;
-            cmbConsulta.SelectedIndex = -1;
         }
 
         //===========================================
@@ -92,6 +96,104 @@ namespace PlusHospi.Views
                 MessageBox.Show("Ingrese un ID válido");
             }
             
+        }
+
+        //===========================================
+        //         BOTÓN PARA AGREGAR EXAMEN
+        //===========================================
+        private void btnAgregarExamen_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+
+                //Obtenemos el ID del paciente
+                int idPaciente = Convert.ToInt32(txtIdBuscarPaciente.Text);
+
+                //Obtenemos los datos del examen
+                string tipoExamen = cmbTipoExamen.Text;
+                string resultadoExamen = cmbResultadoExamen.Text;
+                DateTime fechaExamen = dateFechaExamen.SelectedDate.Value;
+
+                //Verificamos si los campos están vacíos
+                if (tipoExamen == "" || resultadoExamen == "" || fechaExamen == null)
+                {
+                    MessageBox.Show("Por favor llene todos los campos");
+                    return;
+
+                } else
+                {
+                    
+                }
+                //Creamos el examen mandando los valores a ExamenController
+                var examen = new ExamenController().AgregarExamen(idPaciente, tipoExamen, resultadoExamen, fechaExamen);
+
+                //Si se guardo el examen actualizamos los datos
+                if (examen == true)
+                {
+                    btnBuscarPacienteExamen_Click(null, null);
+                    LimpiarCampos();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Debes llenar todos los campos!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
+        private int IDEditarExamen;
+        //===========================================
+        //         BOTÓN PARA EDITAR EXAMEN
+        //===========================================
+        private void btnEditarExamen_Click(object sender, RoutedEventArgs e)
+        {
+
+            //Obtenemos los valores del examen seleccionado en datagrid
+            Examen? examenSeleccionado = datagridExamenesPaciente.SelectedItem as Examen;
+
+            if (examenSeleccionado == null)
+            {
+                MessageBox.Show("Por favor, seleccione un examen", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+            else
+            {
+                //Asignamos los valores a los campos
+                IDEditarExamen = examenSeleccionado.ID_Examen;
+                cmbTipoExamen.Text = examenSeleccionado.Tipo;
+                cmbResultadoExamen.Text = examenSeleccionado.Resultado;
+                dateFechaExamen.SelectedDate = examenSeleccionado.Fecha;
+
+                //Mostramos los botones de confirmar y cancelar editar
+                btnConfirmarEditar.Visibility = Visibility.Visible;
+                btnCancelarEditar.Visibility = Visibility.Visible;
+
+                //Desactivamos agregar, editar y eliminar
+                btnAgregarExamen.IsEnabled = false;
+                btnEditarExamen.IsEnabled = false;
+                btnEliminarExamen.IsEnabled = false;
+            }
+
+        }
+
+        //===========================================
+        //BOTÓN PARA CONFIRMAR EDITAR EXAMEN
+        //===========================================
+        private void btnCancelarEditar_Click(object sender, RoutedEventArgs e)
+        {
+            //Ocultamos los botones de confirmar y cancelar editar
+            btnConfirmarEditar.Visibility = Visibility.Hidden;
+            btnCancelarEditar.Visibility = Visibility.Hidden;
+
+            //Activamos agregar, editar y eliminar
+            btnAgregarExamen.IsEnabled = true;
+            btnEditarExamen.IsEnabled = true;
+            btnEliminarExamen.IsEnabled = true;
+
+            //Limpiamos los campos
+            LimpiarCampos();
+
         }
     }
 }
