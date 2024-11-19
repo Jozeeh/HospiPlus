@@ -78,3 +78,7 @@ C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug
 C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\Views\RecetaPage.baml
 C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\Views\ReportePage.baml
 C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\Views\UsuarioPage.baml
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\MedicoView.g.cs
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\SecretariaView.g.cs
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\MedicoView.baml
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\SecretariaView.baml

@@ -56,10 +56,29 @@ namespace HospiPlusPOE
 
                     if (reader.Read())
                     {
-                        //Si el usuario y contraseña son correctos, se abre la ventana principal
-                        AdminView irAdminView = new AdminView();
-                        irAdminView.Show();
-                        this.Close();
+                        //Obtenemos el rol del usuario del campo Rol
+                        string rolUsuario = reader["Rol"].ToString();
+
+                        if (rolUsuario == "Admin")
+                        {
+                            //Si el usuario y contraseña son correctos, se abre la ventana de medico
+                            AdminView irAdminView = new AdminView();
+                            irAdminView.Show();
+                            this.Close();
+
+                        } else if (rolUsuario == "Medico")
+                        {
+                            MedicoView irMedicoView = new MedicoView();
+                            irMedicoView.Show();
+                            this.Close();
+
+                        } else if (rolUsuario == "Secretaria")
+                        {
+                            SecretariaView irSecretariaView = new SecretariaView();
+                            irSecretariaView.Show();
+                            this.Close();
+                        }
+
 
                     }
                     else
