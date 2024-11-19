@@ -105,7 +105,52 @@ namespace HospiPlusPOE.Controllers
 
             return usuarioAgregado;
         }
+        
+        public bool EditarUsuario(int idUsuario, string nombre, string apellido, string rol, string nickname, string correo, string telefono, string password)
+        {
+            bool usuarioEditado = false;
 
+            //Editamos el usuario en la base de datos
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                {
+                    conexion.Open();
+
+                    string query = "UPDATE Usuario SET Nombre = @nombre, Apellido = @apellido, Correo = @correo, Nickname = @nickname, Rol = @rol";
+
+                    if (!string.IsNullOrEmpty(password))
+                    {
+                        query += ", Password = @password";
+                    }
+
+                    query += " WHERE ID_Usuario = @idUsuario";
+
+                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    {
+                        command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                        command.Parameters.AddWithValue("@nombre", nombre);
+                        command.Parameters.AddWithValue("@apellido", apellido);
+                        command.Parameters.AddWithValue("@rol", rol);
+                        command.Parameters.AddWithValue("@nickname", nickname);
+                        command.Parameters.AddWithValue("@correo", correo);
+                        command.Parameters.AddWithValue("@telefono", telefono);
+                        command.Parameters.AddWithValue("@password", password);
+                        command.ExecuteNonQuery();
+
+                        usuarioEditado = true;
+                        conexion.Close();
+                        MessageBox.Show("Usuario editado correctamente", "Usuario editado", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al editar el usuario: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return usuarioEditado;
+        }
 
         //===================================
         //METODO PARA DESACTIVAR UN USUARIOS

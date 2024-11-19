@@ -58,14 +58,14 @@
                     <Label Content="Contraseña"/>
                     <PasswordBox x:Name="txtPassword" Width="200"/>
                 </StackPanel>
-                <Button x:Name="btnConfirmarEditar" Content="Confirmar editar" Height="22" Width="96"/>
-                <Button x:Name="btnCancelarEditar" Content="Cancelar" Height="22" Width="69"/>
+                <Button x:Name="btnConfirmarEditar" Content="Confirmar editar" Height="22" Width="96" Click="btnConfirmarEditar_Click"/>
+                <Button x:Name="btnCancelarEditar" Content="Cancelar" Height="22" Width="69" Click="btnCancelarEditar_Click"/>
             </WrapPanel>
 
             <!-- Botones de CRUD debajo del formulario -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
                 <Button x:Name="btnAgregar" Content="Agregar" Width="80" Click="btnAgregar_Click"/>
-                <Button x:Name="btnEditar" Content="Editar" Width="80"/>
+                <Button x:Name="btnEditar" Content="Editar" Width="80" Click="btnEditar_Click"/>
                 <Button x:Name="btnDesactivar" Content="Desactivar" Width="80" Click="btnDesactivar_Click"/>
             </StackPanel>
         </StackPanel>
