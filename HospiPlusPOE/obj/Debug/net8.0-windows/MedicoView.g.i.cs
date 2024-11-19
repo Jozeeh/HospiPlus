@@ -54,7 +54,7 @@ namespace HospiPlusPOE {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/HospiPlusPOE;V1.0.0.0;component/medicoview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/HospiPlusPOE;component/medicoview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\MedicoView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

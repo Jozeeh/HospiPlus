@@ -10,10 +10,10 @@
 
     <Grid>
         <!-- Título -->
-        <TextBlock Text="Registro de examen" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
+        <TextBlock Text="Registro de examen" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,409"/>
 
         <!-- ComboBox para seleccionar el tipo de examen -->
-        <ComboBox x:Name="cmbTipoExamen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0" Width="300">
+        <ComboBox x:Name="cmbTipoExamen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,67,0,0" Width="300">
             <ComboBoxItem Content="Examen de Sangre"/>
             <ComboBoxItem Content="Examen de Orina"/>
             <ComboBoxItem Content="Electrocardiograma"/>
@@ -27,18 +27,33 @@
         </ComboBox>
 
         <!-- Input para la Fecha del examen -->
-        <TextBlock Text="Fecha del Examen:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,120,0,0"/>
-        <DatePicker x:Name="dpFechaExamen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,150,0,0" Width="300"/>
+        <TextBlock Text="Fecha del Examen:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="452,44,0,0"/>
+        <DatePicker x:Name="dateFechaExamen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="452,65,0,0" Width="300"/>
 
         <!-- Input para el Resultado del Examen -->
-        <TextBlock Text="Resultado del Examen:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,200,0,0"/>
-        <TextBox x:Name="txtResultado" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,230,0,0" Width="300"/>
+        <TextBlock Text="Resultado del Examen:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,124,0,0"/>
+        <ComboBox x:Name="cmbResultadoExamen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,143,0,0" Width="300">
+            <ComboBoxItem Content="Ninguno"/>
+            <ComboBoxItem Content="En proceso"/>
+            <ComboBoxItem Content="Infeccion"/>
+            <ComboBoxItem Content="Limpio"/>
+        </ComboBox>
 
         <!-- ComboBox para asociar con una consulta (si existe) -->
-        <ComboBox x:Name="cmbConsulta" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,310,0,0" Width="300" DisplayMemberPath="Texto" SelectedValuePath="ID_Cita">
+        <ComboBox x:Name="cmbConsulta" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="452,143,0,0" Width="300" DisplayMemberPath="Texto" SelectedValuePath="ID_Cita">
 
         </ComboBox>
         <!-- Botón para guardar el examen -->
-        <Button Content="Guardar Examen" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="400,0,0,71" Width="100"/>
+        <Button x:Name="btnGuardarExamen" Content="Guardar Examen" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="47,0,0,250" Width="100"/>
+        <TextBlock Text="Tipo de examen:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,46,0,0"/>
+        <TextBlock Text="Resultado del Examen:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="452,127,0,0"/>
+        <DataGrid x:Name="datagridPaciente" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="14,286,18,118" IsEnabled="False"/>
+        <DataGrid x:Name="datagridExamenesPaciente" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="14,337,18,10"/>
+        <TextBox x:Name="txtIdBuscarPaciente" HorizontalAlignment="Left" Margin="23,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnBuscarPacienteExamen" Content="Buscar paciente" HorizontalAlignment="Left" Margin="148,261,0,0" VerticalAlignment="Top" Width="97" Click="btnBuscarPacienteExamen_Click"/>
+        <TextBlock Text="Buscar por ID Paciente" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,242,0,0"/>
+        <Button x:Name="btnAgregarExamen" Content="Agregar Examen" HorizontalAlignment="Left" Margin="452,262,0,0" VerticalAlignment="Top" Width="102"/>
+        <Button x:Name="btnEliminarExamen" Content="Eliminar Examen" HorizontalAlignment="Left" Margin="666,262,0,0" VerticalAlignment="Top" Width="102"/>
+        <Button x:Name="btnEditarExamen" Content="Editar Examen" HorizontalAlignment="Left" Margin="559,262,0,0" VerticalAlignment="Top" Width="102"/>
     </Grid>
 </Page>

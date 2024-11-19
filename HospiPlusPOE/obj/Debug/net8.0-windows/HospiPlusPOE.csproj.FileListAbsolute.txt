@@ -82,3 +82,17 @@ C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug
 C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\SecretariaView.g.cs
 C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\MedicoView.baml
 C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\obj\Debug\net8.0-windows\SecretariaView.baml
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\Microsoft.Extensions.Options.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\PdfSharp.Charting.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\PdfSharp.Quality.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\PdfSharp.Snippets.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\PdfSharp.System.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\PdfSharp.WPFonts.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\PdfSharp.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\de\PdfSharp.Charting.resources.dll
+C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\bin\Debug\net8.0-windows\de\PdfSharp.resources.dll
