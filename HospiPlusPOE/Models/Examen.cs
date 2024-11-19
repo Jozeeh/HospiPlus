@@ -14,6 +14,5 @@ namespace HospiPlusPOE.Models
         public string Resultado { get; set; }
         public DateTime Fecha { get; set; }
 
-
     }
 }
