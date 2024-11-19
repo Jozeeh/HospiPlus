@@ -32,6 +32,9 @@ namespace HospiPlusPOE
             _credencialesConexion = ConfigurationManager.ConnectionStrings["conexionSqlServer"].ConnectionString;
         }
 
+        //==========================
+        //BOTÓN PARA INICIAR SESIÓN
+        //==========================
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
 
@@ -46,7 +49,7 @@ namespace HospiPlusPOE
                 using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
                 {
                     conexion.Open();
-                    SqlCommand query = new SqlCommand("SELECT * FROM Usuario WHERE Nickname = @nickname AND password = @password", conexion);
+                    SqlCommand query = new SqlCommand("SELECT * FROM Usuario WHERE Nickname = @nickname AND password = @password AND Estado = 'Activo'", conexion);
                     query.Parameters.AddWithValue("@nickname", txtUsername.Text);
                     query.Parameters.AddWithValue("@password", txtPassword.Password);
                     SqlDataReader reader = query.ExecuteReader();
