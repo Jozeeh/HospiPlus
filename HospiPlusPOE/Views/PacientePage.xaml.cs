@@ -20,6 +20,11 @@ namespace PlusHospi.Views
             //Inicializamos la coleccion observable
             Pacientes = new ObservableCollection<Paciente>();
             MostrarPacientes();
+
+            //Ocultamos botones de confirmar editar y cancelar editar
+            btnConfirmarEditarPaciente.Visibility = Visibility.Hidden;
+            btnCancelar.Visibility = Visibility.Hidden;
+
         }
 
         //=======================================================
@@ -86,8 +91,115 @@ namespace PlusHospi.Views
                 //Limpiamos los campos
                 LimpiarCampos();
             }
+        }
 
+        private int IDPacienteSeleccionado;
+        //========================================================
+        //BOTÓN PARA EDITAR PACIENTES (asigna datos a los campos)
+        //========================================================
+        private void btnEditarPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            //Obtenemos el paciente seleccionado
+            Paciente? pacienteSeleccionado = datagridPacientes.SelectedItem as Paciente;
 
+            if (pacienteSeleccionado == null)
+            {
+                MessageBox.Show("Por favor, seleccione un paciente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                //Asignamos los valores a los campos
+                IDPacienteSeleccionado = pacienteSeleccionado.ID_Paciente;
+                txtNombrePac.Text = pacienteSeleccionado.Nombre;
+                txtApellidoPac.Text = pacienteSeleccionado.Apellido;
+                dateFechaNacimientoPac.SelectedDate = pacienteSeleccionado.FechaNacimiento;
+                txtDireccionPac.Text = pacienteSeleccionado.Direccion;
+                cmbSeguroPac.Text = pacienteSeleccionado.Seguro_Medico;
+                txtDuiPac.Text = pacienteSeleccionado.DUI;
+                cmbSexoPac.Text = pacienteSeleccionado.Sexo;
+                txtTelefonoPac.Text = pacienteSeleccionado.Telefono;
+                txtCorreoPac.Text = pacienteSeleccionado.Correo;
+                txtNombreEmergenciaPac.Text = pacienteSeleccionado.ContactoEmergenciaNombre;
+                txtTelefonoEmergenciaPac.Text = pacienteSeleccionado.ContactoEmergenciaTelefono;
+                cmbRelacionEmergenciaPac.Text = pacienteSeleccionado.ContactoEmergenciaRelacion;
+
+                //Mostramos los botones de confirmar y cancelar editar
+                btnConfirmarEditarPaciente.Visibility = Visibility.Visible;
+                btnCancelar.Visibility = Visibility.Visible;
+
+                //Desabilitamos el botón de agregar, editar y eliminar
+                btnAgregarPaciente.IsEnabled = false;
+                btnEditarPaciente.IsEnabled = false;
+                btnEliminarPaciente.IsEnabled = false;
+            }
+
+        }
+
+        //===============================================================
+        //BOTÓN PARA CONFIRMAR EDITAR PACIENTES DESDE PacienteController
+        //===============================================================
+        private void btnConfirmarEditarPaciente_Click(object sender, RoutedEventArgs e)
+        {
+
+            //Obtenemos los valores de los campos
+            string nombre = txtNombrePac.Text;
+            string apellido = txtApellidoPac.Text;
+            DateTime fechaNacimiento = dateFechaNacimientoPac.SelectedDate.Value;
+            string direccion = txtDireccionPac.Text;
+            string seguroMedico = cmbSeguroPac.Text;
+            string dui = txtDuiPac.Text;
+            string sexo = cmbSexoPac.Text;
+            string telefono = txtTelefonoPac.Text;
+            string correo = txtCorreoPac.Text;
+            string nombreEmergencia = txtNombreEmergenciaPac.Text;
+            string telefonoEmergencia = txtTelefonoEmergenciaPac.Text;
+            string relacionEmergencia = cmbRelacionEmergenciaPac.Text;
+
+            //Validamos que los campos no estén vacíos
+            if (nombre == "" || apellido == "" || fechaNacimiento == null || direccion == "" || seguroMedico == "" || dui == "" || sexo == "" || telefono == "" || correo == "" || nombreEmergencia == "" || telefonoEmergencia == "" || relacionEmergencia == "")
+            {
+                MessageBox.Show("Por favor, llene todos los campos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                //Ejecutamos el método de EditarPaciente en PacienteController
+                bool validacion = new PacienteController().EditarPaciente(IDPacienteSeleccionado, nombre, apellido, fechaNacimiento, direccion, seguroMedico, dui, sexo, telefono, correo, nombreEmergencia, telefonoEmergencia, relacionEmergencia);
+
+                //Si el paciente se edita correctamente, limpiamos los campos y actualizamos el DataGrid
+                if (validacion == true)
+                {
+                    //Actualizamos el DataGrid
+                    MostrarPacientes();
+                    LimpiarCampos();
+
+                    //Ocultamos los botones de confirmar y cancelar editar
+                    btnConfirmarEditarPaciente.Visibility = Visibility.Hidden;
+                    btnCancelar.Visibility = Visibility.Hidden;
+
+                    //Habilitamos el botón de agregar, editar y eliminar
+                    btnAgregarPaciente.IsEnabled = true;
+                    btnEditarPaciente.IsEnabled = true;
+                    btnEliminarPaciente.IsEnabled = true;
+                }
+            }
+
+        }
+
+        //======================================
+        //BOTÓN PARA CANCELAR EDITAR PACIENTES
+        //======================================
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            LimpiarCampos();
+
+            //Ocultamos los botones de confirmar y cancelar editar
+            btnConfirmarEditarPaciente.Visibility = Visibility.Hidden;
+            btnCancelar.Visibility = Visibility.Hidden;
+
+            //Habilitamos el botón de agregar, editar y eliminar
+            btnAgregarPaciente.IsEnabled = true;
+            btnEditarPaciente.IsEnabled = true;
+            btnEliminarPaciente.IsEnabled = true;
         }
 
         //===============================
@@ -108,7 +220,5 @@ namespace PlusHospi.Views
             txtTelefonoEmergenciaPac.Clear();
             cmbRelacionEmergenciaPac.SelectedIndex = -1;
         }
-
-        
     }
 }

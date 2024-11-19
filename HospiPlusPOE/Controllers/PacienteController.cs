@@ -108,7 +108,7 @@ namespace HospiPlusPOE.Controllers
                     }
 
                     conexion.Close();
-                } 
+                }
             } catch (Exception ex)
             {
                 //Mostramos mensaje de error
@@ -118,7 +118,58 @@ namespace HospiPlusPOE.Controllers
             return pacienteAgregado;
         }
 
+        //==============================
+        //MÉTODO PARA EDITAR PACIENTE
+        //==============================
+        public bool EditarPaciente(int idPaciente, string nombre, string apellido, DateTime fechaNacimiento, string direccion, string seguroMedico, string dui, string sexo, string telefono, string correo, string nombreEmergencia, string telefonoEmergencia, string relacionEmergencia)
+        {
+            bool pacienteEditado = false;
 
+            try
+            {
+
+                //Preguntamos si desea editar
+                MessageBoxResult result = MessageBox.Show("¿Está seguro que desea editar este paciente?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                    {
+                        conexion.Open();
+                        string query = "UPDATE Paciente SET Nombre = @Nombre, Apellido = @Apellido, Sexo = @Sexo, Correo = @Correo, Telefono = @Telefono, DUI = @DUI, Direccion = @Direccion, Seguro_Medico = @Seguro_Medico, Fecha_Nacimiento = @Fecha_Nacimiento, Contacto_Emergencia_Nombre = @ContactoEmergenciaNombre, Contacto_Emergencia_Telefono = @ContactoEmergenciaTelefono, Contacto_Emergencia_Relacion = @ContactoEmergenciaRelacion WHERE ID_Paciente = @ID_Paciente";
+
+                        using (SqlCommand command = new SqlCommand(query, conexion))
+                        {
+                            command.Parameters.AddWithValue("@ID_Paciente", idPaciente);
+                            command.Parameters.AddWithValue("@Nombre", nombre);
+                            command.Parameters.AddWithValue("@Apellido", apellido);
+                            command.Parameters.AddWithValue("@Sexo", sexo);
+                            command.Parameters.AddWithValue("@Correo", correo);
+                            command.Parameters.AddWithValue("@Telefono", telefono);
+                            command.Parameters.AddWithValue("@DUI", dui);
+                            command.Parameters.AddWithValue("@Direccion", direccion);
+                            command.Parameters.AddWithValue("@Seguro_Medico", seguroMedico);
+                            command.Parameters.AddWithValue("@Fecha_Nacimiento", fechaNacimiento);
+                            command.Parameters.AddWithValue("@ContactoEmergenciaNombre", nombreEmergencia);
+                            command.Parameters.AddWithValue("@ContactoEmergenciaTelefono", telefonoEmergencia);
+                            command.Parameters.AddWithValue("@ContactoEmergenciaRelacion", relacionEmergencia);
+
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Paciente editado correctamente", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Information);
+                            pacienteEditado = true;
+                        }
+
+                        conexion.Close();
+                    }
+                }
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Error al editar paciente: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return pacienteEditado;
+        }
 
     }
 }

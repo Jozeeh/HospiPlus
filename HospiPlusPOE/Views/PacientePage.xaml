@@ -21,7 +21,7 @@
         <!-- Fila 0: Botones para agregar, actualizar y borrar -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5">
             <Button x:Name="btnAgregarPaciente" Content="Agregar" Width="100" Margin="5" Click="btnAgregarPaciente_Click"/>
-            <Button x:Name="btnEditarPaciente" Content="Editar" Width="100" Margin="5"/>
+            <Button x:Name="btnEditarPaciente" Content="Editar" Width="100" Margin="5" Click="btnEditarPaciente_Click"/>
             <Button x:Name="btnEliminarPaciente" Content="Eliminar" Width="100" Margin="5"/>
         </StackPanel>
 
@@ -89,6 +89,12 @@
                         <ComboBoxItem Content="Amigo/a"/>
                         <ComboBoxItem Content="Otro"/>
                     </ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="251,103,51,172">
+                    <Button x:Name="btnConfirmarEditarPaciente" Content="Confirmar Editar" Click="btnConfirmarEditarPaciente_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="251,149,51,119">
+                    <Button x:Name="btnCancelar" Content="Cancelar" Click="btnCancelar_Click"/>
                 </StackPanel>
             </Grid>
         </StackPanel>
