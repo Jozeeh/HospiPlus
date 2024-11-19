@@ -110,7 +110,7 @@ namespace PlusHospi.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/HospiPlusPOE;component/views/medicopage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/HospiPlusPOE;V1.0.0.0;component/views/medicopage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\MedicoPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
