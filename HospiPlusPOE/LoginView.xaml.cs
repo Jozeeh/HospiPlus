@@ -77,6 +77,10 @@ namespace HospiPlusPOE
                             SecretariaView irSecretariaView = new SecretariaView();
                             irSecretariaView.Show();
                             this.Close();
+                        
+                        } else
+                        {
+                            MessageBox.Show("Rol de usuario no válido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
 
 
