@@ -84,7 +84,7 @@ namespace HospiPlusPOE.Controllers
                 using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
                 {
                     conexion.Open();
-                    string query = "INSERT INTO Paciente (Nombre, Apellido, Sexo, Correo, Telefono, DUI, Direccion, Seguro_Medico, Fecha_Nacimiento, Contacto_Emergencia_Nombre, Contacto_Emergencia_Telefono, Contacto_Emergencia_Relacion) VALUES (@Nombre, @Apellido, @Sexo, @Correo, @Telefono, @DUI, @Direccion, @Seguro_Medico, @Fecha_Nacimiento, @ContactoEmergenciaNombre, @ContactoEmergenciaTelefono, @ContactoEmergenciaRelacion)";
+                    string query = "INSERT INTO Paciente (Nombre, Apellido, Sexo, Correo, Telefono, DUI, Direccion, Seguro_Medico, Fecha_Nacimiento, Contacto_Emergencia_Nombre, Contacto_Emergencia_Telefono, Contacto_Emergencia_Relacion, Estado) VALUES (@Nombre, @Apellido, @Sexo, @Correo, @Telefono, @DUI, @Direccion, @Seguro_Medico, @Fecha_Nacimiento, @ContactoEmergenciaNombre, @ContactoEmergenciaTelefono, @ContactoEmergenciaRelacion, @Estado)";
 
                     using (SqlCommand command = new SqlCommand(query, conexion))
                     {
@@ -100,6 +100,7 @@ namespace HospiPlusPOE.Controllers
                         command.Parameters.AddWithValue("@ContactoEmergenciaNombre", nombreEmergencia);
                         command.Parameters.AddWithValue("@ContactoEmergenciaTelefono", telefonoEmergencia);
                         command.Parameters.AddWithValue("@ContactoEmergenciaRelacion", relacionEmergencia);
+                        command.Parameters.AddWithValue("@Estado", "Activo");
 
                         command.ExecuteNonQuery();
                         //Mostramos mensaje de confirmacion
@@ -176,36 +177,41 @@ namespace HospiPlusPOE.Controllers
         //================================
         public bool DesactivarPaciente(int idPaciente)
         {
-            bool pacienteEliminado = false;
+            bool pacienteDesactivado = false;
 
             try
             {
 
-                using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                //Preguntamos si desea desactivar
+                MessageBoxResult result = MessageBox.Show("¿Está seguro que desea desactivar este paciente?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
                 {
-                    conexion.Open();
-                    string query = "DELETE FROM Paciente WHERE ID_Paciente = @ID_Paciente";
-
-                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
                     {
-                        command.Parameters.AddWithValue("@ID_Paciente", idPaciente);
+                        conexion.Open();
+                        string query = "UPDATE Paciente SET Estado = 'Inactivo' WHERE ID_Paciente = @ID_Paciente";
 
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Paciente eliminado correctamente", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Information);
-                        pacienteEliminado = true;
+                        using (SqlCommand command = new SqlCommand(query, conexion))
+                        {
+                            command.Parameters.AddWithValue("@ID_Paciente", idPaciente);
+
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Paciente desactivado correctamente", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Information);
+                            pacienteDesactivado = true;
+                        }
+
+                        conexion.Close();
                     }
-
-                    conexion.Close();
                 }
-
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar paciente: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error al desactivar paciente: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            return pacienteEliminado;
+            return pacienteDesactivado;
         }
     }
 }

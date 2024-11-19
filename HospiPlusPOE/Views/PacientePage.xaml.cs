@@ -130,7 +130,7 @@ namespace PlusHospi.Views
                 //Desabilitamos el botón de agregar, editar y eliminar
                 btnAgregarPaciente.IsEnabled = false;
                 btnEditarPaciente.IsEnabled = false;
-                btnEliminarPaciente.IsEnabled = false;
+                btnDesactivarPaciente.IsEnabled = false;
             }
 
         }
@@ -179,7 +179,12 @@ namespace PlusHospi.Views
                     //Habilitamos el botón de agregar, editar y eliminar
                     btnAgregarPaciente.IsEnabled = true;
                     btnEditarPaciente.IsEnabled = true;
-                    btnEliminarPaciente.IsEnabled = true;
+                    btnDesactivarPaciente.IsEnabled = true;
+                }
+                else
+                {
+                    //Limpiamos seleccion
+                    datagridPacientes.SelectedItem = null;
                 }
             }
 
@@ -199,7 +204,37 @@ namespace PlusHospi.Views
             //Habilitamos el botón de agregar, editar y eliminar
             btnAgregarPaciente.IsEnabled = true;
             btnEditarPaciente.IsEnabled = true;
-            btnEliminarPaciente.IsEnabled = true;
+            btnDesactivarPaciente.IsEnabled = true;
+        }
+
+        //=======================================================
+        //BOTÓN PARA DESACTIVAR PACIENTES DESDE PacienteController
+        //=======================================================
+        private void btnDesactivarPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            //Obtenemos el paciente seleccionado
+            Paciente? pacienteSeleccionado = datagridPacientes.SelectedItem as Paciente;
+
+            if (pacienteSeleccionado == null)
+            {
+                MessageBox.Show("Por favor, seleccione un paciente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                //Ejecutamos el método de DesactivarPaciente en PacienteController
+                bool validacion = new PacienteController().DesactivarPaciente(pacienteSeleccionado.ID_Paciente);
+
+                if (validacion == true)
+                {
+                    //Actualizamos el DataGrid
+                    MostrarPacientes();
+                
+                } else
+                {
+                    //Limpiamos seleccion
+                    datagridPacientes.SelectedItem = null;
+                }
+            }
         }
 
         //===============================
@@ -220,5 +255,7 @@ namespace PlusHospi.Views
             txtTelefonoEmergenciaPac.Clear();
             cmbRelacionEmergenciaPac.SelectedIndex = -1;
         }
+
+        
     }
 }

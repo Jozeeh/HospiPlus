@@ -22,7 +22,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5">
             <Button x:Name="btnAgregarPaciente" Content="Agregar" Width="100" Margin="5" Click="btnAgregarPaciente_Click"/>
             <Button x:Name="btnEditarPaciente" Content="Editar" Width="100" Margin="5" Click="btnEditarPaciente_Click"/>
-            <Button x:Name="btnEliminarPaciente" Content="Eliminar" Width="100" Margin="5"/>
+            <Button x:Name="btnDesactivarPaciente" Content="Desactivar" Width="100" Margin="5" Click="btnDesactivarPaciente_Click"/>
         </StackPanel>
 
         <!-- Fila 1: Formulario de ingreso de datos -->
