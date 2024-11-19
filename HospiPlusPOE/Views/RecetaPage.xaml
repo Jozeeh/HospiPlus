@@ -1,0 +1,34 @@
+﻿<Page x:Class="PlusHospi.Views.RecetaPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PlusHospi.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RecetaPage">
+    <StackPanel Margin="20">
+        <TextBlock Text="Fecha:" FontWeight="Bold"/>
+        <DatePicker x:Name="dpFecha" />
+
+        <TextBlock Text="Medicamentos:" FontWeight="Bold" Margin="0,10,0,0"/>
+        <TextBox x:Name="txtMedicamentos" Width="200"/>
+
+        <TextBlock Text="Selecciona Consulta:" FontWeight="Bold" Margin="0,10,0,0"/>
+        <ComboBox x:Name="cmbConsulta" Width="200"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <Button Content="Agregar Receta" Margin="5"/>
+            <Button Content="Editar Receta" Margin="5"/>
+            <Button Content="Eliminar Receta" Margin="5"/>
+        </StackPanel>
+
+        <DataGrid x:Name="RecetaDataGrid" AutoGenerateColumns="False" Height="200" Margin="0,10,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" />
+                <DataGridTextColumn Header="Medicamentos" Binding="{Binding Medicamentos}" />
+                <DataGridTextColumn Header="ID de Consulta" Binding="{Binding ID_FK_Consulta}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Page>

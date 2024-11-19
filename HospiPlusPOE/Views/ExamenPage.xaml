@@ -1,0 +1,44 @@
+﻿<Page x:Class="PlusHospi.Views.ExamenPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PlusHospi.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ExamenPage">
+
+    <Grid>
+        <!-- Título -->
+        <TextBlock Text="Registro de examen" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
+
+        <!-- ComboBox para seleccionar el tipo de examen -->
+        <ComboBox x:Name="cmbTipoExamen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0" Width="300">
+            <ComboBoxItem Content="Examen de Sangre"/>
+            <ComboBoxItem Content="Examen de Orina"/>
+            <ComboBoxItem Content="Electrocardiograma"/>
+            <ComboBoxItem Content="Radiografía"/>
+            <ComboBoxItem Content="Ultrasonido"/>
+            <ComboBoxItem Content="Tomografía"/>
+            <ComboBoxItem Content="Resonancia Magnética"/>
+            <ComboBoxItem Content="Biopsia"/>
+            <ComboBoxItem Content="Test de Embarazo"/>
+            <ComboBoxItem Content="Prueba de Función Hepática"/>
+        </ComboBox>
+
+        <!-- Input para la Fecha del examen -->
+        <TextBlock Text="Fecha del Examen:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,120,0,0"/>
+        <DatePicker x:Name="dpFechaExamen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,150,0,0" Width="300"/>
+
+        <!-- Input para el Resultado del Examen -->
+        <TextBlock Text="Resultado del Examen:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,200,0,0"/>
+        <TextBox x:Name="txtResultado" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,230,0,0" Width="300"/>
+
+        <!-- ComboBox para asociar con una consulta (si existe) -->
+        <ComboBox x:Name="cmbConsulta" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,310,0,0" Width="300" DisplayMemberPath="Texto" SelectedValuePath="ID_Cita">
+
+        </ComboBox>
+        <!-- Botón para guardar el examen -->
+        <Button Content="Guardar Examen" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="400,0,0,71" Width="100"/>
+    </Grid>
+</Page>

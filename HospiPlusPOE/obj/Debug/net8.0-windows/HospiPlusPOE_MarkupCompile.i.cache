@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\ja314\OneDrive\Desktop\POE-Proyecto\HospiPlusPoe\HospiPlusPOE\App.xaml
-4854490820
+12-666049200
 
-101431487564
+18-1583847922
 2242106104914
-AdminView.xaml;Estilos\EstilosBotones.xaml;Estilos\UIcolores.xaml;LoginView.xaml;
+AdminView.xaml;Estilos\EstilosBotones.xaml;Estilos\UIcolores.xaml;LoginView.xaml;Views\CitaPage.xaml;Views\ConsultaPage.xaml;Views\ExamenPage.xaml;Views\MedicoPage.xaml;Views\PacientePage.xaml;Views\RecetaPage.xaml;Views\ReportePage.xaml;Views\UsuarioPage.xaml;
 
 False
 

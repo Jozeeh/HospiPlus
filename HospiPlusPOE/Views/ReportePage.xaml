@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="PlusHospi.Views.ReportePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlusHospi.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Label Content="GENERAR REPORTES" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <WrapPanel Margin="0,52,489,324">
+            <StackPanel Height="75" Width="135">
+                <Label Content="N° ID Usuario" Width="123"/>
+                <TextBox x:Name="txtIDPaciente" TextWrapping="Wrap" Width="120"/>
+            </StackPanel>
+            <StackPanel Width="145" Height="24">
+                <Button x:Name="btnBuscarPaciente" Content="Buscar paciente"/>
+            </StackPanel>
+        </WrapPanel>
+        <WrapPanel Margin="298,72,0,194">
+            <StackPanel Height="149" Width="154">
+                <Image Height="108" Width="100" Source="/Views/expediente.png"/>
+                <StackPanel Height="27" Width="128">
+                    <Button x:Name="btnReporteExpediente" Content="Reporte Expediente" Width="124" Height="20"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Height="150" Width="154">
+                <Image Height="100" Width="100" Source="/Views/recetas.png"/>
+                <StackPanel Height="47" Width="128">
+                    <Button x:Name="btnReporteRecetas" Content="Reporte Recetas" Width="124"/>
+                    <DatePicker x:Name="dateFechaRecetas" Width="124"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Height="149" Width="154">
+                <Image Height="100" Width="100" Source="/Views/examen.png"/>
+                <StackPanel Height="46" Width="128">
+                    <Button x:Name="btnReporteExamenes" Content="Reporte Examenes" Width="124"/>
+                    <DatePicker x:Name="dateFechaExamenes" Width="124"/>
+                </StackPanel>
+            </StackPanel>
+        </WrapPanel>
+        <WrapPanel Margin="454,272,191,37">
+            <StackPanel Height="149" Width="154">
+                <Image Height="108" Width="100" Source="/Views/expediente.png"/>
+                <StackPanel Height="27" Width="128">
+                    <Button x:Name="btnReporteConsultas" Content="Reporte Consultas" Width="124" Height="20"/>
+                </StackPanel>
+            </StackPanel>
+        </WrapPanel>
+        <StackPanel Margin="10,107,507,194">
+            <Label Content="Información usuario" FontWeight="Bold"/>
+            <Label x:Name="lblNombre" Content="Nombre:"/>
+            <Label x:Name="lblCorreo" Content="Correo:"/>
+            <Label x:Name="lblTelefono" Content="Telefono:"/>
+        </StackPanel>
+        <StackPanel Margin="10,107,507,194">
+            <Label Content="Información usuario" FontWeight="Bold"/>
+            <Label x:Name="lblNombre1" Content="Nombre:"/>
+            <Label x:Name="lblCorreo1" Content="Correo:"/>
+            <Label x:Name="lblTelefono1" Content="Telefono:"/>
+        </StackPanel>
+        <StackPanel Margin="10,299,507,37">
+            <Label Content="Informacion medico" FontWeight="Bold"/>
+            <Label x:Name="lblNombreMed" Content="Nombre:"/>
+            <Label x:Name="lblCorreoMed" Content="Correo:"/>
+            <Label x:Name="lblTelefonoMed" Content="Telefono:"/>
+        </StackPanel>
+        <WrapPanel Margin="0,238,489,138">
+            <StackPanel Height="75" Width="135">
+                <Label Content="N° ID Medico" Width="123"/>
+                <TextBox x:Name="txtIDMedico" TextWrapping="Wrap" Width="120"/>
+            </StackPanel>
+            <StackPanel Width="145" Height="24">
+                <Button x:Name="btnBuscarMedico" Content="Buscar medico"/>
+            </StackPanel>
+        </WrapPanel>
+
+    </Grid>
+</UserControl>

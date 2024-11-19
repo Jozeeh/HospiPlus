@@ -50,7 +50,7 @@
                     </StackPanel>
 
                     <!-- Menú de botones -->
-                    <RadioButton x:Name="UsuarioBtn" Style="{StaticResource menuButton}" Tag="{StaticResource color2}" Click="AbrirUsuarios_Click" Checked="UsuarioBtn_Checked">
+                    <RadioButton x:Name="UsuarioBtn" Style="{StaticResource menuButton}" Tag="{StaticResource color2}" Click="AbrirUsuarios_Click">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="👤" FontSize="30" Margin="25,0"/>
                             <TextBlock Text="Usuarios" Style="{StaticResource menuButtonText}"/>

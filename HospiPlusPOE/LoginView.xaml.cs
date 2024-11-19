@@ -54,7 +54,10 @@ namespace HospiPlusPOE
                     if (reader.Read())
                     {
                         //Si el usuario y contraseña son correctos, se abre la ventana principal
-                        MessageBox.Show("Bienvenido " + reader["nickname"].ToString(), "Inicio de sesión exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
+                        AdminView irAdminView = new AdminView();
+                        irAdminView.Show();
+                        this.Close();
+
                     }
                     else
                     {
