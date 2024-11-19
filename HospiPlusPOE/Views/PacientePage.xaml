@@ -20,9 +20,9 @@
 
         <!-- Fila 0: Botones para agregar, actualizar y borrar -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5">
-            <Button Content="Agregar" Width="100" Margin="5"/>
-            <Button Content="Actualizar" Width="100" Margin="5"/>
-            <Button Content="Borrar" Width="100" Margin="5"/>
+            <Button x:Name="btnAgregarPaciente" Content="Agregar" Width="100" Margin="5" Click="btnAgregarPaciente_Click"/>
+            <Button x:Name="btnEditarPaciente" Content="Editar" Width="100" Margin="5"/>
+            <Button x:Name="btnEliminarPaciente" Content="Eliminar" Width="100" Margin="5"/>
         </StackPanel>
 
         <!-- Fila 1: Formulario de ingreso de datos -->
@@ -38,50 +38,50 @@
                 <!-- Datos a la izquierda -->
                 <StackPanel Grid.Column="0" Margin="5,5,5,5">
                     <TextBlock Text="Nombre:" />
-                    <TextBox x:Name="NombreTextBox" Margin="5" Height="22" Width="224"/>
+                    <TextBox x:Name="txtNombrePac" Margin="5" Height="22" Width="224"/>
 
                     <TextBlock Text="Apellido:" />
-                    <TextBox x:Name="ApellidoTextBox" Margin="5" Height="22" Width="224"/>
+                    <TextBox x:Name="txtApellidoPac" Margin="5" Height="22" Width="224"/>
 
                     <TextBlock Text="Fecha de Nacimiento:" />
-                    <DatePicker x:Name="FechaNacimientoPicker" Margin="5" Width="224"/>
+                    <DatePicker x:Name="dateFechaNacimientoPac" Margin="5" Width="224"/>
 
                     <TextBlock Text="Dirección:" />
-                    <TextBox x:Name="DireccionTextBox" Margin="5" Height="22" Width="224"/>
+                    <TextBox x:Name="txtDireccionPac" Margin="5" Height="22" Width="224"/>
 
                     <TextBlock Text="Seguro Médico:" />
-                    <ComboBox x:Name="SeguroComboBox" Margin="5" Width="224">
+                    <ComboBox x:Name="cmbSeguroPac" Margin="5" Width="224">
                         <ComboBoxItem Content="Ninguno"/>
                         <ComboBoxItem Content="SeguroPlus"/>
                         <ComboBoxItem Content="SaludVida"/>
                     </ComboBox>
 
                     <TextBlock Text="DUI:" />
-                    <TextBox x:Name="DUITextBox" Margin="5" Height="22" Width="224"/>
+                    <TextBox x:Name="txtDuiPac" Margin="5" Height="22" Width="224"/>
                 </StackPanel>
 
                 <!-- Datos a la derecha -->
                 <StackPanel Grid.Column="1" Margin="5,5,9,10">
                     <TextBlock Text="Sexo:" />
-                    <ComboBox x:Name="SexoComboBox" Margin="5" Width="224">
+                    <ComboBox x:Name="cmbSexoPac" Margin="5" Width="224">
                         <ComboBoxItem Content="Masculino"/>
                         <ComboBoxItem Content="Femenino"/>
                     </ComboBox>
 
                     <TextBlock Text="Teléfono:" />
-                    <TextBox x:Name="TelefonoTextBox" Margin="5" Height="22" Width="224"/>
+                    <TextBox x:Name="txtTelefonoPac" Margin="5" Height="22" Width="224"/>
 
                     <TextBlock Text="Correo:" />
-                    <TextBox x:Name="CorreoTextBox" Margin="5" Height="22" Width="224"/>
+                    <TextBox x:Name="txtCorreoPac" Margin="5" Height="22" Width="224"/>
 
                     <TextBlock Text="Nombre de Contacto de Emergencia:" />
-                    <TextBox x:Name="ContactoEmergenciaNombreTextBox" Margin="5" Height="22" Width="224"/>
+                    <TextBox x:Name="txtNombreEmergenciaPac" Margin="5" Height="22" Width="224"/>
 
                     <TextBlock Text="Teléfono de Contacto de Emergencia:" />
-                    <TextBox x:Name="ContactoEmergenciaTelefonoTextBox" Margin="5" Height="22" Width="224"/>
+                    <TextBox x:Name="txtTelefonoEmergenciaPac" Margin="5" Height="22" Width="224"/>
 
                     <TextBlock Text="Relación con el Contacto de Emergencia:" />
-                    <ComboBox x:Name="ContactoEmergenciaRelacionComboBox" Margin="5" Width="224">
+                    <ComboBox x:Name="cmbRelacionEmergenciaPac" Margin="5" Width="224">
                         <ComboBoxItem Content="Padre"/>
                         <ComboBoxItem Content="Madre"/>
                         <ComboBoxItem Content="Hermano/a"/>

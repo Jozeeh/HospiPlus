@@ -13,6 +13,7 @@ using Microsoft.Data.SqlClient;
 
 //Importamos librerias para mostrar mensajes
 using System.Windows;
+using System.Linq.Expressions;
 
 namespace HospiPlusPOE.Controllers
 {
@@ -69,6 +70,54 @@ namespace HospiPlusPOE.Controllers
 
             return pacientes;
         }
+
+        //=============================
+        //MÉTODO PARA AGREGAR PACIENTE
+        //=============================
+        public bool AgregarPaciente(string nombre, string apellido, DateTime fechaNacimiento, string direccion, string seguroMedico, string dui, string sexo, string telefono, string correo, string nombreEmergencia, string telefonoEmergencia, string relacionEmergencia)
+        {
+            bool pacienteAgregado = false;
+
+            try
+            {
+                //Insertamos el paciente en la base de datos
+                using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                {
+                    conexion.Open();
+                    string query = "INSERT INTO Paciente (Nombre, Apellido, Sexo, Correo, Telefono, DUI, Direccion, Seguro_Medico, Fecha_Nacimiento, Contacto_Emergencia_Nombre, Contacto_Emergencia_Telefono, Contacto_Emergencia_Relacion) VALUES (@Nombre, @Apellido, @Sexo, @Correo, @Telefono, @DUI, @Direccion, @Seguro_Medico, @Fecha_Nacimiento, @ContactoEmergenciaNombre, @ContactoEmergenciaTelefono, @ContactoEmergenciaRelacion)";
+
+                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    {
+                        command.Parameters.AddWithValue("@Nombre", nombre);
+                        command.Parameters.AddWithValue("@Apellido", apellido);
+                        command.Parameters.AddWithValue("@Sexo", sexo);
+                        command.Parameters.AddWithValue("@Correo", correo);
+                        command.Parameters.AddWithValue("@Telefono", telefono);
+                        command.Parameters.AddWithValue("@DUI", dui);
+                        command.Parameters.AddWithValue("@Direccion", direccion);
+                        command.Parameters.AddWithValue("@Seguro_Medico", seguroMedico);
+                        command.Parameters.AddWithValue("@Fecha_Nacimiento", fechaNacimiento);
+                        command.Parameters.AddWithValue("@ContactoEmergenciaNombre", nombreEmergencia);
+                        command.Parameters.AddWithValue("@ContactoEmergenciaTelefono", telefonoEmergencia);
+                        command.Parameters.AddWithValue("@ContactoEmergenciaRelacion", relacionEmergencia);
+
+                        command.ExecuteNonQuery();
+                        //Mostramos mensaje de confirmacion
+                        MessageBox.Show("Paciente agregado correctamente", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Information);
+                        pacienteAgregado = true;
+                    }
+
+                    conexion.Close();
+                } 
+            } catch (Exception ex)
+            {
+                //Mostramos mensaje de error
+                MessageBox.Show("Error al agregar paciente: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return pacienteAgregado;
+        }
+
 
 
     }
