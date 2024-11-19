@@ -173,6 +173,9 @@ namespace PlusHospi.Views
                 btnAgregarExamen.IsEnabled = false;
                 btnEditarExamen.IsEnabled = false;
                 btnEliminarExamen.IsEnabled = false;
+
+                //Desactivamos que se pueda modificar id del paciente
+                txtIdBuscarPaciente.IsEnabled = false;
             }
 
         }
@@ -191,9 +194,99 @@ namespace PlusHospi.Views
             btnEditarExamen.IsEnabled = true;
             btnEliminarExamen.IsEnabled = true;
 
+            //Activamos que se pueda modificar id del paciente
+            txtIdBuscarPaciente.IsEnabled = true;
+
             //Limpiamos los campos
             LimpiarCampos();
 
+        }
+
+        //===========================================
+        //  BOTÓN PARA CONFIRMAR EDITAR EXAMEN
+        //===========================================
+        private void btnConfirmarEditar_Click(object sender, RoutedEventArgs e)
+        {
+            
+            try
+            {
+                //Obtenemos los valores de los campos
+                int idExamen = IDEditarExamen;
+                string tipoExamen = cmbTipoExamen.Text;
+                string resultadoExamen = cmbResultadoExamen.Text;
+                DateTime fechaExamen = dateFechaExamen.SelectedDate.Value;
+
+                //Verificamos si los campos están vacíos
+                if (tipoExamen == "" || resultadoExamen == "" || fechaExamen == null)
+                {
+                    MessageBox.Show("Por favor llene todos los campos");
+                    return;
+
+                }
+                else
+                {
+                    //Ejecutamos el método de EditarExamen en ExamenController
+                    bool validacion = new ExamenController().EditarExamen(idExamen, tipoExamen, resultadoExamen, fechaExamen);
+
+                    //Si el examen se edita correctamente, limpiamos los campos y actualizamos el DataGrid
+                    if (validacion == true)
+                    {
+                        //Actualizamos el DataGrid
+                        btnBuscarPacienteExamen_Click(null, null);
+
+                        //Ocultamos los botones de confirmar y cancelar editar
+                        btnConfirmarEditar.Visibility = Visibility.Hidden;
+                        btnCancelarEditar.Visibility = Visibility.Hidden;
+
+                        //Activamos agregar, editar y eliminar
+                        btnAgregarExamen.IsEnabled = true;
+                        btnEditarExamen.IsEnabled = true;
+                        btnEliminarExamen.IsEnabled = true;
+
+                        //Activamos que se pueda modificar id del paciente
+                        txtIdBuscarPaciente.IsEnabled = true;
+
+                        //Limpiamos los campos
+                        LimpiarCampos();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Debes llenar todos los campos!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
+        //==============================
+        //  BOTÓN PARA ELIMINAR EXAMEN
+        //==============================
+        private void btnEliminarExamen_Click(object sender, RoutedEventArgs e)
+        {
+            //Obtenemos el examen seleccionado en el DataGrid
+            Examen? examenSeleccionado = datagridExamenesPaciente.SelectedItem as Examen;
+
+            if (examenSeleccionado == null)
+            {
+                MessageBox.Show("Selecciona un examen para eliminar", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+            else
+            {
+                //Ejecutamos el método de EliminarExamen en ExamenController
+                bool validacion = new ExamenController().EliminarExamen(examenSeleccionado.ID_Examen);
+
+                //Si el examen se elimina correctamente, actualizamos el DataGrid
+                if (validacion == true)
+                {
+                    btnBuscarPacienteExamen_Click(null, null);
+                }
+                else
+                {
+                    //Limpiamos seleccion
+                    datagridExamenesPaciente.SelectedItem = null;
+                }
+            }
         }
     }
 }

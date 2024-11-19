@@ -162,5 +162,89 @@ namespace HospiPlusPOE.Controllers
             return examenAgregado;
         }
 
+        //=================================
+        //MÉTODO PARA EDITAR UN EXAMEN
+        //=================================
+        public bool EditarExamen(int idExamen, string tipo, string resultado, DateTime fecha)
+        {
+            bool examenEditado = false;
+
+            try
+            {
+                //Preguntamos si desea editar
+                MessageBoxResult result = MessageBox.Show("¿Está seguro que desea editar el examen?", "Editar Examen", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    //Editamos el examen en la base de datos
+                    using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                    {
+                        conexion.Open();
+                        string query = "UPDATE Examen SET Tipo = @Tipo, Resultado = @Resultado, Fecha = @Fecha WHERE ID_Examen = @ID_Examen";
+
+                        using (SqlCommand command = new SqlCommand(query, conexion))
+                        {
+                            command.Parameters.AddWithValue("@ID_Examen", idExamen);
+                            command.Parameters.AddWithValue("@Tipo", tipo);
+                            command.Parameters.AddWithValue("@Resultado", resultado);
+                            command.Parameters.AddWithValue("@Fecha", fecha);
+
+                            command.ExecuteNonQuery();
+                        }
+                        conexion.Close();
+                        examenEditado = true;
+                    }
+
+                    MessageBox.Show("Examen editado correctamente");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al editar examen: " + ex.Message);
+            }
+
+            return examenEditado;
+        }
+
+        //=================================
+        //MÉTODO PARA ELIMINAR UN EXAMEN
+        //=================================
+        public bool EliminarExamen(int idExamen)
+        {
+            bool examenEliminado = false;
+
+            try
+            {
+                //Preguntamos si desea eliminar
+                MessageBoxResult result = MessageBox.Show("¿Está seguro que desea eliminar el examen?", "Eliminar Examen", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    //Eliminamos el examen de la base de datos
+                    using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                    {
+                        conexion.Open();
+                        string query = "DELETE FROM Examen WHERE ID_Examen = @ID_Examen";
+
+                        using (SqlCommand command = new SqlCommand(query, conexion))
+                        {
+                            command.Parameters.AddWithValue("@ID_Examen", idExamen);
+                            command.ExecuteNonQuery();
+                        }
+                        conexion.Close();
+                        examenEliminado = true;
+                    }
+
+                    MessageBox.Show("Examen eliminado correctamente");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar examen: " + ex.Message);
+            }
+
+            return examenEliminado;
+        }
+
     }
 }

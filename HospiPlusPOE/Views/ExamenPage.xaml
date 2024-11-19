@@ -48,9 +48,9 @@
         <Button x:Name="btnBuscarPacienteExamen" Content="Buscar paciente" HorizontalAlignment="Left" Margin="148,261,0,0" VerticalAlignment="Top" Width="97" Click="btnBuscarPacienteExamen_Click"/>
         <TextBlock Text="Buscar por ID Paciente" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,242,0,0"/>
         <Button x:Name="btnAgregarExamen" Content="Agregar Examen" HorizontalAlignment="Left" Margin="452,262,0,0" VerticalAlignment="Top" Width="102" Click="btnAgregarExamen_Click"/>
-        <Button x:Name="btnEliminarExamen" Content="Eliminar Examen" HorizontalAlignment="Left" Margin="666,262,0,0" VerticalAlignment="Top" Width="102"/>
+        <Button x:Name="btnEliminarExamen" Content="Eliminar Examen" HorizontalAlignment="Left" Margin="666,262,0,0" VerticalAlignment="Top" Width="102" Click="btnEliminarExamen_Click"/>
         <Button x:Name="btnEditarExamen" Content="Editar Examen" HorizontalAlignment="Left" Margin="559,262,0,0" VerticalAlignment="Top" Width="102" Click="btnEditarExamen_Click"/>
-        <Button x:Name="btnConfirmarEditar" Content="Editar Examen" HorizontalAlignment="Left" Margin="500,235,0,0" VerticalAlignment="Top" Width="102"/>
+        <Button x:Name="btnConfirmarEditar" Content="Confirmar Editar" HorizontalAlignment="Left" Margin="500,235,0,0" VerticalAlignment="Top" Width="102" Click="btnConfirmarEditar_Click"/>
         <Button x:Name="btnCancelarEditar" Content="Cancelar" HorizontalAlignment="Left" Margin="610,235,0,0" VerticalAlignment="Top" Width="102" Click="btnCancelarEditar_Click"/>
     </Grid>
 </Page>
