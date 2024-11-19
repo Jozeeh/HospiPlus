@@ -7,28 +7,54 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RecetaPage">
-    <StackPanel Margin="20">
-        <TextBlock Text="Fecha:" FontWeight="Bold"/>
-        <DatePicker x:Name="dpFecha" />
 
-        <TextBlock Text="Medicamentos:" FontWeight="Bold" Margin="0,10,0,0"/>
-        <TextBox x:Name="txtMedicamentos" Width="200"/>
-
-        <TextBlock Text="Selecciona Consulta:" FontWeight="Bold" Margin="0,10,0,0"/>
-        <ComboBox x:Name="cmbConsulta" Width="200"/>
-
-        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-            <Button Content="Agregar Receta" Margin="5"/>
-            <Button Content="Editar Receta" Margin="5"/>
-            <Button Content="Eliminar Receta" Margin="5"/>
+    <Grid>
+        <!-- Título -->
+        <TextBlock Text="Registro de recetas" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,409"/>
+        <TextBox x:Name="txtIdPaciente" HorizontalAlignment="Left" Margin="45,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="N° ID Paciente" HorizontalAlignment="Left" Margin="45,60,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbMedicamento" HorizontalAlignment="Left" Margin="242,84,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Paracetamol"/>
+            <ComboBoxItem Content="Ibuprofeno"/>
+            <ComboBoxItem Content="Amoxicilina"/>
+            <ComboBoxItem Content="Omeprazol"/>
+            <ComboBoxItem Content="Diazepam"/>
+            <ComboBoxItem Content="Lorazepam"/>
+            <ComboBoxItem Content="Clonazepam"/>
+        </ComboBox>
+        <Button x:Name="btnBuscarPacienteReceta" Content="Buscar paciente" HorizontalAlignment="Left" Margin="45,109,0,0" VerticalAlignment="Top" Width="100" Click="btnBuscarPacienteReceta_Click"/>
+        <Label Content="Medicamento" HorizontalAlignment="Left" Margin="242,60,0,0" VerticalAlignment="Top"/>
+        <Label Content="Dosis" HorizontalAlignment="Left" Margin="445,60,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbDosis" HorizontalAlignment="Left" Margin="445,84,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="2 pastillas c/8h"/>
+            <ComboBoxItem Content="1 pastilla c/12h"/>
+            <ComboBoxItem Content="1 pastilla c/8h"/>
+            <ComboBoxItem Content="1 pastilla c/24h"/>
+        </ComboBox>
+        <ComboBox x:Name="cmbDuracion" HorizontalAlignment="Left" Margin="643,84,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="1 día"/>
+            <ComboBoxItem Content="3 días"/>
+            <ComboBoxItem Content="5 días"/>
+            <ComboBoxItem Content="7 días"/>
+            <ComboBoxItem Content="14 días"/>
+            <ComboBoxItem Content="21 días"/>
+            <ComboBoxItem Content="30 días"/>
+        </ComboBox>
+        <Label Content="Duracion" HorizontalAlignment="Left" Margin="643,60,0,0" VerticalAlignment="Top"/>
+        <Label Content="Seleccione una consulta para asignar receta" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Width="247"/>
+        <DataGrid x:Name="datagridRecetas" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,307,10,10"/>
+        <Label Content="Reecetas del paciente" HorizontalAlignment="Left" Margin="10,281,0,0" VerticalAlignment="Top"/>
+        <StackPanel Margin="10,179,10,169">
+            <DataGrid x:Name="datagridConsultas" d:ItemsSource="{d:SampleData ItemCount=5}" Height="106" Width="780"/>
         </StackPanel>
 
-        <DataGrid x:Name="RecetaDataGrid" AutoGenerateColumns="False" Height="200" Margin="0,10,0,0">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" />
-                <DataGridTextColumn Header="Medicamentos" Binding="{Binding Medicamentos}" />
-                <DataGridTextColumn Header="ID de Consulta" Binding="{Binding ID_FK_Consulta}" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </StackPanel>
+        <!-- ComboBox para seleccionar el tipo de examen -->
+
+        <!-- Input para la Fecha del examen -->
+
+        <!-- Input para el Resultado del Examen -->
+
+        <!-- ComboBox para asociar con una consulta (si existe) -->
+        <!-- Botón para guardar el examen -->
+    </Grid>
 </Page>
