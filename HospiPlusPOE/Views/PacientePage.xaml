@@ -50,7 +50,11 @@
                     <TextBox x:Name="DireccionTextBox" Margin="5" Height="22" Width="224"/>
 
                     <TextBlock Text="Seguro Médico:" />
-                    <TextBox x:Name="SeguroMedicoTextBox" Margin="5" Height="22" Width="224"/>
+                    <ComboBox x:Name="SeguroComboBox" Margin="5" Width="224">
+                        <ComboBoxItem Content="Ninguno"/>
+                        <ComboBoxItem Content="SeguroPlus"/>
+                        <ComboBoxItem Content="SaludVida"/>
+                    </ComboBox>
 
                     <TextBlock Text="DUI:" />
                     <TextBox x:Name="DUITextBox" Margin="5" Height="22" Width="224"/>
@@ -93,6 +97,6 @@
         <TextBlock Grid.Row="2"/>
 
         <!-- Grid con la lista de pacientes (fila 3) -->
-        <DataGrid x:Name="PacientesDataGrid" Grid.Row="3" Margin="5" AutoGenerateColumns="True"/>
+        <DataGrid x:Name="datagridPacientes" Grid.Row="3" Margin="5" AutoGenerateColumns="True"/>
     </Grid>
 </Page>
