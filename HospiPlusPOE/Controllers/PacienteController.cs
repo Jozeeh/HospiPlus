@@ -39,7 +39,7 @@ namespace HospiPlusPOE.Controllers
             using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
             {
                 conexion.Open();
-                string query = "SELECT * FROM Paciente";
+                string query = "SELECT * FROM Paciente WHERE Estado = 'Activo'";
 
                 using (SqlCommand command = new SqlCommand(query, conexion))
                 {
@@ -171,5 +171,41 @@ namespace HospiPlusPOE.Controllers
             return pacienteEditado;
         }
 
+        //================================
+        //MÉTODO PARA DESACTIVAR PACIENTE
+        //================================
+        public bool DesactivarPaciente(int idPaciente)
+        {
+            bool pacienteEliminado = false;
+
+            try
+            {
+
+                using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                {
+                    conexion.Open();
+                    string query = "DELETE FROM Paciente WHERE ID_Paciente = @ID_Paciente";
+
+                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    {
+                        command.Parameters.AddWithValue("@ID_Paciente", idPaciente);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Paciente eliminado correctamente", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Information);
+                        pacienteEliminado = true;
+                    }
+
+                    conexion.Close();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar paciente: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return pacienteEliminado;
+        }
     }
 }

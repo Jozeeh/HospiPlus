@@ -21,5 +21,6 @@ namespace HospiPlusPOE.Models
         public string ContactoEmergenciaNombre { get; set; }
         public string ContactoEmergenciaTelefono { get; set; }
         public string ContactoEmergenciaRelacion { get; set; }
+        public string Estado { get; set; }
     }
 }
