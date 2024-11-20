@@ -110,7 +110,8 @@ namespace HospiPlusPOE.Controllers
 
                     conexion.Close();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 //Mostramos mensaje de error
                 MessageBox.Show("Error al agregar paciente: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -164,7 +165,8 @@ namespace HospiPlusPOE.Controllers
                     }
                 }
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al editar paciente: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using HospiPlusPOE.Controllers;
 using HospiPlusPOE.Models;
 
@@ -228,8 +229,9 @@ namespace PlusHospi.Views
                 {
                     //Actualizamos el DataGrid
                     MostrarPacientes();
-                
-                } else
+
+                }
+                else
                 {
                     //Limpiamos seleccion
                     datagridPacientes.SelectedItem = null;
@@ -237,10 +239,29 @@ namespace PlusHospi.Views
             }
         }
 
-        //===============================
-        //MÉTODO PARA LIMPIAR LOS CAMPOS
-        //===============================
-        private void LimpiarCampos()
+
+        // Evento para el buscador de DUI
+        private void txtBuscarDUI_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textoBusqueda = txtBuscarDUI.Text;
+            var pacientesFiltrados = Pacientes.Where(p => p.DUI.Contains(textoBusqueda)).ToList();
+            datagridPacientes.ItemsSource = pacientesFiltrados;
+        }
+
+        // Método de validación para solo aceptar números
+        private void SoloNumeros(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (!char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)))
+            {
+                e.Handled = true;
+            }
+        }
+    
+
+    //===============================
+    //MÉTODO PARA LIMPIAR LOS CAMPOS
+    //===============================
+    private void LimpiarCampos()
         {
             txtNombrePac.Clear();
             txtApellidoPac.Clear();
@@ -256,6 +277,6 @@ namespace PlusHospi.Views
             cmbRelacionEmergenciaPac.SelectedIndex = -1;
         }
 
-        
+
     }
 }

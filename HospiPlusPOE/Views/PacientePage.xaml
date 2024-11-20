@@ -18,8 +18,14 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <!-- Contenedor del buscador con placeholder -->
+        <Grid Grid.Column="0" Margin="5">
+            <TextBox x:Name="txtBuscarDUI" KeyDown="SoloNumeros" TextChanged="txtBuscarDUI_TextChanged" Margin="-10,0,520,0"/>
+            <TextBlock x:Name="PlaceholderBuscarDUI" Text="BUSQUEDA POR DUI" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Gray" Margin="5,0,0,0" IsHitTestVisible="False" Visibility="Visible"/>
+        </Grid>
+
         <!-- Fila 0: Botones para agregar, actualizar y borrar -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="368,5,0,5">
             <Button x:Name="btnAgregarPaciente" Content="Agregar" Width="100" Margin="5" Click="btnAgregarPaciente_Click"/>
             <Button x:Name="btnEditarPaciente" Content="Editar" Width="100" Margin="5" Click="btnEditarPaciente_Click"/>
             <Button x:Name="btnDesactivarPaciente" Content="Desactivar" Width="100" Margin="5" Click="btnDesactivarPaciente_Click"/>
@@ -50,14 +56,14 @@
                     <TextBox x:Name="txtDireccionPac" Margin="5" Height="22" Width="224"/>
 
                     <TextBlock Text="Seguro Médico:" />
-                    <ComboBox x:Name="cmbSeguroPac" Margin="5" Width="224">
+                    <ComboBox x:Name="cmbSeguroPac" Margin="5" Width="224" >
                         <ComboBoxItem Content="Ninguno"/>
                         <ComboBoxItem Content="SeguroPlus"/>
                         <ComboBoxItem Content="SaludVida"/>
                     </ComboBox>
 
                     <TextBlock Text="DUI:" />
-                    <TextBox x:Name="txtDuiPac" Margin="5" Height="22" Width="224"/>
+                    <TextBox x:Name="txtDuiPac" Margin="5" Height="22" Width="224" KeyDown="SoloNumeros"/>
                 </StackPanel>
 
                 <!-- Datos a la derecha -->
@@ -69,7 +75,7 @@
                     </ComboBox>
 
                     <TextBlock Text="Teléfono:" />
-                    <TextBox x:Name="txtTelefonoPac" Margin="5" Height="22" Width="224"/>
+                    <TextBox x:Name="txtTelefonoPac" Margin="5" Height="22" Width="224" KeyDown="SoloNumeros"/>
 
                     <TextBlock Text="Correo:" />
                     <TextBox x:Name="txtCorreoPac" Margin="5" Height="22" Width="224"/>

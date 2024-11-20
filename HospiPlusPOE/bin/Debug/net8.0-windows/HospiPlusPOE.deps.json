@@ -10,6 +10,7 @@
         "dependencies": {
           "FontAwesome.Sharp": "6.6.0",
           "Microsoft.Data.SqlClient": "5.2.2",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
           "PDFsharp": "6.1.1"
         },
         "runtime": {
