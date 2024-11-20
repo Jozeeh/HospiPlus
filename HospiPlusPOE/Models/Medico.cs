@@ -12,5 +12,15 @@ namespace HospiPlusPOE.Models
         public int ID_FK_Usuario { get; set; }
         public string Especialidad { get; set; }
         public string NumeroLicencia { get; set; }
+        public int ID_Usuario { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Rol { get; set; }
+        public string Nickname { get; set; }
+        public string Correo { get; set; }
+        public string Telefono { get; set; }
+        public string Password { get; set; }
+        public string Estado { get; set; }
+
     }
 }

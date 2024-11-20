@@ -32,8 +32,17 @@ namespace PlusHospi.Views
             Medicos = new ObservableCollection<Medico>(medicosDesdeBD.Select(m => new Medico
             {
                 ID_Medico = m.ID_Medico,
+                ID_FK_Usuario = m.ID_FK_Usuario,
+                Nombre = m.Nombre,
+                Apellido = m.Apellido,
+                Rol = m.Rol,
                 Especialidad = m.Especialidad,
                 NumeroLicencia = m.NumeroLicencia,
+                Nickname = m.Nickname,
+                Correo = m.Correo,
+                Telefono = m.Telefono,
+                Estado = m.Estado,
+                ID_Usuario = m.ID_Usuario,
             }));
 
             MedicoDataGrid.ItemsSource = Medicos;

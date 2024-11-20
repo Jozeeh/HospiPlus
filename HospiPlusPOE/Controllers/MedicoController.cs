@@ -26,7 +26,7 @@ namespace HospiPlusPOE.Controllers
             using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
             {
                 conexion.Open();
-                string query = "SELECT * FROM Medico";  // La consulta sigue siendo la misma
+                string query = "SELECT * FROM Medico, Usuario WHERE ID_Usuario = ID_FK_Usuario AND Rol = 'Medico' AND Estado = 'Activo'";
 
                 using (SqlCommand command = new SqlCommand(query, conexion))
                 {
@@ -35,11 +35,19 @@ namespace HospiPlusPOE.Controllers
                     {
                         medicos.Add(new Medico
                         {
-                            // Usamos GetInt32() para los campos enteros
-                            ID_Medico = reader.GetInt32(reader.GetOrdinal("ID_Medico")),  // ID_Medico es de tipo int
-                            ID_FK_Usuario = reader.GetInt32(reader.GetOrdinal("ID_FK_Usuario")),  // ID_FK_Usuario es de tipo int
-                            Especialidad = reader.IsDBNull(reader.GetOrdinal("Especialidad")) ? string.Empty : reader.GetString(reader.GetOrdinal("Especialidad")),  // Especialidad es de tipo varchar
-                            NumeroLicencia = reader.IsDBNull(reader.GetOrdinal("NumeroLicencia")) ? string.Empty : reader.GetString(reader.GetOrdinal("NumeroLicencia"))  // NumeroLicencia es de tipo varchar
+                            ID_Medico = Convert.ToInt32(reader.GetInt32(0)),
+                            ID_FK_Usuario = Convert.ToInt32(reader.GetInt32(1)),
+                            Especialidad = reader.GetString(2),
+                            NumeroLicencia = reader.GetString(3),
+                            ID_Usuario = Convert.ToInt32(reader.GetInt32(4)),
+                            Nombre = reader.GetString(5),
+                            Apellido = reader.GetString(6),
+                            Rol = reader.GetString(7),
+                            Nickname = reader.GetString(8),
+                            Correo = reader.GetString(9),
+                            Telefono = reader.GetString(10),
+                            Password = reader.GetString(11),
+                            Estado = reader.GetString(12)
                         });
                     }
                 }
