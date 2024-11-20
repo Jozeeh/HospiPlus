@@ -82,15 +82,15 @@
         <DataGrid x:Name="MedicoDataGrid" Grid.Row="3" Margin="5" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="MedicoDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID_Medico}" Width="50"/>
-                <DataGridTextColumn Header="Nombre" Binding="{Binding ID_Usuario}" Width="100"/>
+                <DataGridTextColumn Header="ID_Usuario" Binding="{Binding ID_Usuario}" Width="100"/>
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="100"/>
                 <DataGridTextColumn Header="Apellido" Binding="{Binding Apellido}" Width="100"/>
                 <DataGridTextColumn Header="Especialidad" Binding="{Binding Especialidad}" Width="100"/>
                 <DataGridTextColumn Header="Número de Licencia" Binding="{Binding NumeroLicencia}" Width="120"/>
-                <DataGridTextColumn Header="Teléfono" Binding="{Binding Nickname}" Width="100"/>
-                <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}" Width="100"/>
-                <DataGridTextColumn Header="Teléfono" Binding="{Binding Correo}" Width="100"/>
-                <DataGridTextColumn Header="Teléfono" Binding="{Binding Rol}" Width="100"/>
+                <DataGridTextColumn Header="Nickname" Binding="{Binding Nickname}" Width="100"/>
+                <DataGridTextColumn Header="Telefono" Binding="{Binding Telefono}" Width="100"/>
+                <DataGridTextColumn Header="Correo" Binding="{Binding Correo}" Width="100"/>
+                <DataGridTextColumn Header="Rol" Binding="{Binding Rol}" Width="100"/>
                 <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="75"/>
             </DataGrid.Columns>
         </DataGrid>
