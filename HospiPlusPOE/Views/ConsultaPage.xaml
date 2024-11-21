@@ -8,13 +8,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ConsultaPage">
 
-    <Grid>
-        <StackPanel Margin="20">
+    <Grid Margin="0,0,0,10">
+        <StackPanel Margin="20,20,20,10">
             <TextBlock Text="Datos de la Consulta" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
 
             <!-- Información de la Consulta -->
-            <TextBlock Text="Fecha de la Consulta:"/>
-            <DatePicker x:Name="FechaConsulta" Margin="0,0,0,10"/>
 
             <TextBlock Text="Diagnóstico:"/>
             <TextBox x:Name="txtDiagnostico" Margin="0,0,0,10" Height="60"/>
@@ -23,18 +21,42 @@
             <TextBox x:Name="txtDescripcion" Margin="0,0,0,10" Height="60"/>
 
             <!-- Selección de Médico -->
-            <TextBlock Text="Seleccionar Médico:"/>
-            <ComboBox x:Name="cmbMedico" Margin="0,0,0,10"/>
 
             <!-- Selección de Paciente -->
-            <TextBlock Text="Seleccionar Paciente:"/>
-            <ComboBox x:Name="cmbPaciente" Margin="0,0,0,10"/>
 
             <!-- Botones de acción -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20,20,20,0">
-                <Button Content="Guardar" Width="100"/>
+                <Button Content="Guardar" Width="100" Click="GuardarConsulta_Click"/>
                 <Button Content="Cancelar" Width="100" Margin="10,0,0,0" Click="CancelarConsulta_Click"/>
             </StackPanel>
+            <Label Content="Seleccionar cita" FontWeight="Bold"/>
+            <DataGrid x:Name="datagridCitas" d:ItemsSource="{d:SampleData ItemCount=5}" Height="107" Width="760"/>
+            <DataGrid x:Name="datagridConsultas"
+          AutoGenerateColumns="False" 
+          Height="128" Width="760">
+                <DataGrid.Columns>
+                    <!-- Columna para el ID de la consulta -->
+                    <DataGridTextColumn Header="ID Consulta" Binding="{Binding ID_Consulta}" />
+
+                    <!-- Columna para el Nombre del paciente -->
+                    <DataGridTextColumn Header="Nombre Paciente" Binding="{Binding NombrePaciente}" />
+
+                    <!-- Columna para el Apellido del paciente -->
+                    <DataGridTextColumn Header="Apellido Paciente" Binding="{Binding ApellidoPaciente}" />
+
+                    <!-- Columna para el Nombre del médico -->
+                    <DataGridTextColumn Header="Nombre Médico" Binding="{Binding NombreMedico}" />
+
+                    <!-- Columna para el Apellido del médico -->
+                    <DataGridTextColumn Header="Apellido Médico" Binding="{Binding ApellidoMedico}" />
+
+                    <!-- Columna para los síntomas -->
+                    <DataGridTextColumn Header="Síntomas" Binding="{Binding Sintomas}" />
+
+                    <!-- Columna para el diagnóstico -->
+                    <DataGridTextColumn Header="Diagnóstico" Binding="{Binding Diagnostico}" />
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </Page>

@@ -5,8 +5,159 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospiPlusPOE"
         mc:Ignorable="d"
-        Title="MedicoView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MedicoView" Height="700" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border CornerRadius="10" BorderThickness="1">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
+                <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.5"/>
+                <GradientStop Color="{StaticResource winBorderColor3}" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Sidebar con las opciones del menú -->
+            <Border Grid.Column="0" CornerRadius="10,0,0,10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
+                        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="0"/>
+                        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <StackPanel Margin="0,0,-24,0">
+                    <!-- Logo del Hospital -->
+                    <StackPanel Orientation="Horizontal" Height="50" Margin="10,20,0,40">
+                        <Image Source="/Images/hospital.png" Height="40"/>
+                        <TextBlock Text="HospiPlus"
+                           Foreground="{StaticResource titleColor2}"
+                           FontSize="18"
+                           FontFamily="Segoe UI"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="10,0,0,0"/>
+                    </StackPanel>
+
+                    <!-- Menú de botones -->
+
+                    <RadioButton x:Name="RecetaBtn" Style="{StaticResource menuButton}" Tag="{StaticResource color2}" Click="AbrirReceta_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="💊" FontSize="30" Margin="25,0"/>
+                            <TextBlock Text="Recetas" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton x:Name="CitasBtn" Style="{StaticResource menuButton}" Tag="{StaticResource color2}" Click="AbrirCita_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📅" FontSize="30" Margin="25,0"/>
+                            <TextBlock Text="Citas" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton x:Name="ConsultaBtn" Style="{StaticResource menuButton}" Tag="{StaticResource color2}" Click="AbrirConsulta_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📋" FontSize="30" Margin="25,0"/>
+                            <TextBlock Text="Consultas" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton x:Name="ExamenBtn" Style="{StaticResource menuButton}" Tag="{StaticResource color2}" Click="AbrirExamen_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🔬" FontSize="30" Margin="25,0"/>
+                            <TextBlock Text="Exámenes" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color4}" IsChecked="True" Click="GoToLoginPage">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="←" FontSize="30" Margin="25,0"/>
+                            <TextBlock Text="Cerrar sesión" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+            </Border>
+
+            <!-- Área de contenido dinámico -->
+            <Border Grid.Column="1" CornerRadius="0,10,10,0" Margin="0,0,-11,0" Grid.ColumnSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Grid Margin="0,0,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" 
+                       Text="Bienvenido a HospiPlus" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       Foreground="{StaticResource titleColor1}" 
+                       Margin="219,10,10,10"/>
+
+                    <!-- Contenedor dinámico de contenido -->
+                    <Frame x:Name="ContentArea" Grid.Row="1" Margin="10,10,19,10" Content="" />
+
+                    <!-- Boton minimizar y cerrar -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0">
+                        <Button x:Name="btnMinimize" BorderThickness="0" Content="-" Foreground="White" FontSize="16" FontFamily="Montserrat" Cursor="Hand" 
+                Width="25" Height="25" Click="btnMinimize_Click">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#278BEF"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Width="18" Height="18" CornerRadius="9" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button x:Name="btnClose" BorderThickness="0" Content="X" Foreground="White" FontSize="12" FontFamily="Montserrat" Cursor="Hand" 
+                Width="25" Height="25" Click="btnClose_Click" Margin="5,0,0,0">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#DA34AE"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#C62DAE"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Width="18" Height="18" CornerRadius="9" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
 </Window>

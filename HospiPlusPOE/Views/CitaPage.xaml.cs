@@ -213,7 +213,6 @@ namespace PlusHospi.Views
             {
                 _citaController.EliminarCita(citaSeleccionada.ID_Cita);
                 CargarDatos();
-
             }
         }
     }

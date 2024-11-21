@@ -20,8 +20,7 @@
 
         <!-- Contenedor del buscador con placeholder -->
         <Grid Grid.Column="0" Margin="5">
-            <TextBox x:Name="txtBuscarDUI" KeyDown="SoloNumeros" TextChanged="txtBuscarDUI_TextChanged" Margin="-10,0,520,0"/>
-            <TextBlock x:Name="PlaceholderBuscarDUI" Text="BUSQUEDA POR DUI" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Gray" Margin="5,0,0,0" IsHitTestVisible="False" Visibility="Visible"/>
+            <TextBox x:Name="txtBuscarDUI" KeyDown="SoloNumeros" TextChanged="txtBuscarDUI_TextChanged" Margin="0,5,530,5"/>
         </Grid>
 
         <!-- Fila 0: Botones para agregar, actualizar y borrar -->
@@ -110,5 +109,6 @@
 
         <!-- Grid con la lista de pacientes (fila 3) -->
         <DataGrid x:Name="datagridPacientes" Grid.Row="3" Margin="5" AutoGenerateColumns="True"/>
+        <Label Content="Busqueda por DUI" HorizontalAlignment="Left" Margin="5,27,0,0" VerticalAlignment="Top" Width="175" Grid.RowSpan="2" FontWeight="Bold"/>
     </Grid>
 </Page>
