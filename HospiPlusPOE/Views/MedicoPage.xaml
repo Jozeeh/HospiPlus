@@ -51,6 +51,7 @@
                 <StackPanel Grid.Column="0" Margin="5">
                     <TextBlock Text="Especialidad:"/>
                     <ComboBox x:Name="cmbEspecialidad" Margin="5" Width="224">
+                        <ComboBoxItem Content="Desconocido"/>
                         <ComboBoxItem Content="Cardiologia"/>
                         <ComboBoxItem Content="Dermatologia"/>
                         <ComboBoxItem Content="Ginecologia"/>

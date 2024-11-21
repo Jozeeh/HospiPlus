@@ -97,6 +97,42 @@ namespace HospiPlusPOE.Controllers
                         MessageBox.Show("Usuario agregado correctamente", "Usuario agregado", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
+
+                //Si es un medico agregamos el medico a la tabla Medico
+                if (rol == "Medico")
+                {
+                    //Obtenemos el ID del usuario que acabamos de agregar
+                    int idUsuario = 0;
+                    using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                    {
+                        conexion.Open();
+                        string query = "SELECT ID_Usuario FROM Usuario WHERE Nickname = @nickname";
+
+                        using (SqlCommand command = new SqlCommand(query, conexion))
+                        {
+                            command.Parameters.AddWithValue("@nickname", nickname);
+                            idUsuario = (int)command.ExecuteScalar();
+                            conexion.Close();
+                        }
+                    }
+
+                    //Agregamos el medico a la tabla Medico
+                    using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                    {
+                        conexion.Open();
+                        string query = "INSERT INTO Medico (ID_FK_Usuario, Especialidad, NumeroLicencia) VALUES (@idFkUsuario, @Especialidad, @NumeroLicencia)";
+
+                        using (SqlCommand command = new SqlCommand(query, conexion))
+                        {
+                            command.Parameters.AddWithValue("@idFkUsuario", idUsuario);
+                            command.Parameters.AddWithValue("@Especialidad", "Desconocido");
+                            command.Parameters.AddWithValue("@NumeroLicencia", "Desconocido");
+                            command.ExecuteNonQuery();
+                            conexion.Close();
+                        }
+                    }
+                }
+
             }
             catch (Exception ex)
             {

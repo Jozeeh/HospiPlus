@@ -18,7 +18,11 @@
             <DatePicker x:Name="dpFecha" Margin="5"/>
 
             <TextBlock Text="Hora de la cita" Margin="5"/>
-            <TextBox x:Name="txtHora" Margin="5"/>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="cmbHora" Width="60" Margin="5" />
+                <ComboBox x:Name="cmbMinuto" Width="60" Margin="5" />
+                <ComboBox x:Name="cmbAmPm" Width="60" Margin="5" />
+            </StackPanel>
 
             <TextBlock Text="Seleccionar Médico" Margin="5"/>
             <ComboBox x:Name="cmbMedico" Margin="5"/>
@@ -27,9 +31,11 @@
             <ComboBox x:Name="cmbPaciente" Margin="5"/>
 
             <StackPanel Orientation="Horizontal" Margin="5">
-                <Button Content="Agregar" Margin="5"/>
-                <Button Content="Editar" Margin="5"/>
-                <Button Content="Eliminar" Margin="5"/>
+                <Button x:Name="btnCrearCita" Content="Agregar" Margin="5" Click="BtnCrearCita_Click"/>
+                <Button x:Name="btnEditarCita" Content="Editar" Margin="5" Click="btnEditarCita_Click"/>
+                <Button x:Name="btnEliminarCita" Content="Eliminar" Margin="5" Click="btnEliminarCita_Click"/>
+                <Button x:Name="btnConfirmarEditar" Content="Confirmar Editar" Height="20" Width="92" Click="btnConfirmarEditar_Click"/>
+                <Button x:Name="btnCancelarEditar" Content="Cancelar" Margin="5" Height="20" Width="54" Click="btnCancelarEditar_Click"/>
             </StackPanel>
         </StackPanel>
 
