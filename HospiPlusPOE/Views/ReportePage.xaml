@@ -14,28 +14,14 @@
                 <TextBox x:Name="txtIDPaciente" TextWrapping="Wrap" Width="120"/>
             </StackPanel>
             <StackPanel Width="145" Height="24">
-                <Button x:Name="btnBuscarPaciente" Content="Buscar paciente"/>
+                <Button x:Name="btnBuscarPaciente" Content="Buscar paciente" Click="btnBuscarPaciente_Click"/>
             </StackPanel>
         </WrapPanel>
-        <WrapPanel Margin="298,72,0,194">
+        <WrapPanel Margin="450,72,187,194">
             <StackPanel Height="149" Width="154">
                 <Image Height="108" Width="100" Source="/Views/expediente.png"/>
                 <StackPanel Height="27" Width="128">
-                    <Button x:Name="btnReporteExpediente" Content="Reporte Expediente" Width="124" Height="20"/>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Height="150" Width="154">
-                <Image Height="100" Width="100" Source="/Views/recetas.png"/>
-                <StackPanel Height="47" Width="128">
-                    <Button x:Name="btnReporteRecetas" Content="Reporte Recetas" Width="124"/>
-                    <DatePicker x:Name="dateFechaRecetas" Width="124"/>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Height="149" Width="154">
-                <Image Height="100" Width="100" Source="/Views/examen.png"/>
-                <StackPanel Height="46" Width="128">
-                    <Button x:Name="btnReporteExamenes" Content="Reporte Examenes" Width="124"/>
-                    <DatePicker x:Name="dateFechaExamenes" Width="124"/>
+                    <Button x:Name="btnReporteExpediente" Content="Reporte Expediente" Width="124" Height="20" Click="btnReporteExpediente_Click"/>
                 </StackPanel>
             </StackPanel>
         </WrapPanel>
@@ -43,7 +29,7 @@
             <StackPanel Height="149" Width="154">
                 <Image Height="108" Width="100" Source="/Views/expediente.png"/>
                 <StackPanel Height="27" Width="128">
-                    <Button x:Name="btnReporteConsultas" Content="Reporte Consultas" Width="124" Height="20"/>
+                    <Button x:Name="btnReporteConsultas" Content="Reporte Consultas" Width="124" Height="20" Click="btnReporteConsultas_Click"/>
                 </StackPanel>
             </StackPanel>
         </WrapPanel>
@@ -52,12 +38,6 @@
             <Label x:Name="lblNombre" Content="Nombre:"/>
             <Label x:Name="lblCorreo" Content="Correo:"/>
             <Label x:Name="lblTelefono" Content="Telefono:"/>
-        </StackPanel>
-        <StackPanel Margin="10,107,507,194">
-            <Label Content="Información usuario" FontWeight="Bold"/>
-            <Label x:Name="lblNombre1" Content="Nombre:"/>
-            <Label x:Name="lblCorreo1" Content="Correo:"/>
-            <Label x:Name="lblTelefono1" Content="Telefono:"/>
         </StackPanel>
         <StackPanel Margin="10,299,507,37">
             <Label Content="Informacion medico" FontWeight="Bold"/>
@@ -71,7 +51,7 @@
                 <TextBox x:Name="txtIDMedico" TextWrapping="Wrap" Width="120"/>
             </StackPanel>
             <StackPanel Width="145" Height="24">
-                <Button x:Name="btnBuscarMedico" Content="Buscar medico"/>
+                <Button x:Name="btnBuscarMedico" Content="Buscar medico" Click="btnBuscarMedico_Click"/>
             </StackPanel>
         </WrapPanel>
 

@@ -117,8 +117,7 @@ namespace HospiPlusPOE.Controllers
 
 
 
-        public bool DesactivarMedico(int idMedico)
-    {
+        public bool DesactivarMedico(int idMedico) {
         bool medicoDesactivado = false;
 
         try

@@ -13,11 +13,13 @@
     <None Remove="hospital.png" />
     <None Remove="key-icon.png" />
     <None Remove="user-icon.png" />
+    <None Remove="Views\examen.png" />
+    <None Remove="Views\expediente.png" />
+    <None Remove="Views\recetas.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Estilos\" />
-    <Folder Include="Views\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +34,9 @@
     <Resource Include="hospital.png" />
     <Resource Include="key-icon.png" />
     <Resource Include="user-icon.png" />
+    <Resource Include="Views\examen.png" />
+    <Resource Include="Views\expediente.png" />
+    <Resource Include="Views\recetas.png" />
   </ItemGroup>
 
 </Project>
