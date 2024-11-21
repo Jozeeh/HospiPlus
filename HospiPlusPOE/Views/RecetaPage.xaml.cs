@@ -31,10 +31,9 @@ namespace PlusHospi.Views
         {
             InitializeComponent();
 
-            //Desactivamos los campos para agregar recetas
-            cmbMedicamento.IsEnabled = false;
-            cmbDosis.IsEnabled = false;
-            cmbDuracion.IsEnabled = false;
+            //Ocultamos botones de confirmarEditar y cancelarEditar
+            btnConfirmarEditar.Visibility = Visibility.Hidden;
+            btnCancelarEditar.Visibility = Visibility.Hidden;
 
         }
 
@@ -108,6 +107,161 @@ namespace PlusHospi.Views
                 MessageBox.Show("Error al buscar paciente: " + ex.Message);
             }
 
+        }
+
+        //=================================
+        //BÓTON PARA AGREGAR RECETA
+        //=================================
+        private void btnAgregarReceta_Click(object sender, RoutedEventArgs e)
+        {
+            //Obtenemos id consulta seleccionada del datagrid
+            Consulta consultaSeleccionada = (Consulta)datagridConsultas.SelectedItem;
+
+            //Obtenemos los valores
+            string medicamento = cmbMedicamento.Text;
+            string dosis = cmbDosis.Text;
+            string duracion = cmbDuracion.Text;
+
+            //Verificamos si se selecciono una consulta
+            if (consultaSeleccionada != null)
+            {
+                //Verificamos si los campos estan vacios
+                if (medicamento != "" && dosis != "" && duracion != "")
+                {
+                    //Agregamos la receta
+                    new RecetaController().AgregarReceta(consultaSeleccionada.ID_Consulta, medicamento, dosis, duracion);
+
+                    //Limpiamos los campos
+                    LimpiarCampos();
+
+                    //Actualizamos el datagrid de recetas
+                    datagridRecetas.ItemsSource = new RecetaController().ObtenerRecetasPorPaciente(consultaSeleccionada.ID_FK_Paciente);
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, complete todos los campos.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una consulta.");
+            }
+        }
+
+        private int IDRecetaSeleccionada;
+        //=================================
+        //BÓTON PARA EDITAR RECETA
+        //=================================
+        private void btnEditarReceta_Click(object sender, RoutedEventArgs e)
+        {
+            //Obtenemos los valores
+            Receta recetaSeleccionada = (Receta)datagridRecetas.SelectedItem;
+
+            if (recetaSeleccionada != null)
+            {
+                IDRecetaSeleccionada = recetaSeleccionada.ID_Receta;
+                cmbMedicamento.Text = recetaSeleccionada.Medicamento;
+                cmbDosis.Text = recetaSeleccionada.Dosis;
+                cmbDuracion.Text = recetaSeleccionada.Duracion;
+
+                //Mostramos botones de confirmarEditar y cancelarEditar
+                btnConfirmarEditar.Visibility = Visibility.Visible;
+                btnCancelarEditar.Visibility = Visibility.Visible;
+
+                //Desactivamos agregar, editar y eliminar y la modificacion de id
+                txtIdPaciente.IsEnabled = false;
+                btnAgregarReceta.IsEnabled = false;
+                btnEditarReceta.IsEnabled = false;
+                btnEliminarReceta.IsEnabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una receta.");
+            }
+        }
+
+        //=================================
+        //BÓTON PARA CONFIRMAR EDICIÓN
+        //=================================
+        private void btnConfirmarEditar_Click(object sender, RoutedEventArgs e)
+        {
+            //Obtenemos los valores
+            int idFkReceta = IDRecetaSeleccionada;
+            string medicamento = cmbMedicamento.Text;
+            string dosis = cmbDosis.Text;
+            string duracion = cmbDuracion.Text;
+
+            //Verificamos si los campos estan vacios
+            if (medicamento != "" && dosis != "" && duracion != "")
+            {
+                //Editamos la receta
+                new RecetaController().EditarReceta(idFkReceta, medicamento, dosis, duracion);
+
+                //Limpiamos los campos
+                LimpiarCampos();
+
+                //Actualizamos el datagrid de recetas
+                btnBuscarPacienteReceta_Click(null, null);
+
+                //Ocultamos botones de confirmarEditar y cancelarEditar
+                btnConfirmarEditar.Visibility = Visibility.Hidden;
+                btnCancelarEditar.Visibility = Visibility.Hidden;
+
+                //Volvemos activar los botones agregar, editar y eliminar tambien id modificacion
+                txtIdPaciente.IsEnabled = true;
+                btnAgregarReceta.IsEnabled = true;
+                btnEditarReceta.IsEnabled = true;
+                btnEliminarReceta.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Por favor, complete todos los campos.");
+            }
+
+        }
+
+        //=================================
+        //BÓTON PARA CANCELAR EDITAR RECETA
+        //=================================
+        private void btnCancelarEditar_Click(object sender, RoutedEventArgs e)
+        {
+            //Limpiamos los campos
+            LimpiarCampos();
+
+            //Ocultamos botones de confirmarEditar y cancelarEditar
+            btnConfirmarEditar.Visibility = Visibility.Hidden;
+            btnCancelarEditar.Visibility = Visibility.Hidden;
+
+            //Volvemos activar los botones agregar, editar y eliminar tambien id modificacion
+            txtIdPaciente.IsEnabled = true;
+            btnAgregarReceta.IsEnabled = true;
+            btnEditarReceta.IsEnabled = true;
+            btnEliminarReceta.IsEnabled = true;
+        }
+
+        //=================================
+        //BÓTON PARA ELIMINAR RECETA
+        //=================================
+        private void btnEliminarReceta_Click(object sender, RoutedEventArgs e)
+        {
+            //Obtenemos los valores
+            Receta recetaSeleccionada = (Receta)datagridRecetas.SelectedItem;
+
+            if (recetaSeleccionada != null)
+            {
+                //Eliminamos la receta
+                new RecetaController().EliminarReceta(recetaSeleccionada.ID_Receta);
+
+                //Limpiamos los campos
+                LimpiarCampos();
+
+                //Actualizamos el datagrid de recetas
+                btnBuscarPacienteReceta_Click(null, null);
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una receta.");
+            }
         }
     }
 }

@@ -149,5 +149,110 @@ namespace HospiPlusPOE.Controllers
 
             return recetas;
         }
+
+        //=================================
+        //MÉTODO PARA AGREGAR RECETA
+        //=================================
+        public void AgregarReceta(int idFkReceta, string medicamento, string dosis, string duracion)
+        {
+
+            try
+            {
+                //Insertamos la receta en la base de datos
+                using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                {
+                    conexion.Open();
+                    string query = "INSERT INTO Receta (ID_FK_Consulta, Medicamento, Dosis, Duracion) VALUES (@idFkReceta, @Medicamento, @Dosis, @Duracion)";
+
+                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    {
+                        command.Parameters.AddWithValue("@idFkReceta", idFkReceta);
+                        command.Parameters.AddWithValue("@Medicamento", medicamento);
+                        command.Parameters.AddWithValue("@Dosis", dosis);
+                        command.Parameters.AddWithValue("@Duracion", duracion);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Receta agregada correctamente");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar la receta: " + ex.Message);
+            }
+        }
+
+        //=================================
+        //MÉTODO PARA EDITAR RECETA
+        //=================================
+        public void EditarReceta(int idReceta, string medicamento, string dosis, string duracion)
+        {
+
+            try
+            {
+                //Editamos la receta en la base de datos
+                using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                {
+                    conexion.Open();
+                    string query = "UPDATE Receta SET Medicamento = @Medicamento, Dosis = @Dosis, Duracion = @Duracion WHERE ID_Receta = @ID_Receta";
+
+                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    {
+                        command.Parameters.AddWithValue("@ID_Receta", idReceta);
+                        command.Parameters.AddWithValue("@Medicamento", medicamento);
+                        command.Parameters.AddWithValue("@Dosis", dosis);
+                        command.Parameters.AddWithValue("@Duracion", duracion);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Receta editada correctamente");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al editar la receta: " + ex.Message);
+            }
+        }
+
+        //=================================
+        //MÉTODO PARA ELIMINAR RECETA
+        //=================================
+        public bool EliminarReceta(int idReceta)
+        {
+            bool recetaEliminada = false;
+
+            //Preguntamos si quiere eliminar
+            MessageBoxResult result = MessageBox.Show("¿Está seguro que desea eliminar la receta?", "Eliminar receta", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    //Eliminamos la receta en la base de datos
+                    using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                    {
+                        conexion.Open();
+                        string query = "DELETE FROM Receta WHERE ID_Receta = @ID_Receta";
+
+                        using (SqlCommand command = new SqlCommand(query, conexion))
+                        {
+                            command.Parameters.AddWithValue("@ID_Receta", idReceta);
+
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Receta eliminada correctamente");
+                            recetaEliminada = true;
+                        }
+                        conexion.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar la receta: " + ex.Message);
+                }
+            }
+
+            return recetaEliminada;
+        }
+
     }
 }

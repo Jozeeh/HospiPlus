@@ -47,6 +47,11 @@
         <StackPanel Margin="10,179,10,169">
             <DataGrid x:Name="datagridConsultas" d:ItemsSource="{d:SampleData ItemCount=5}" Height="106" Width="780"/>
         </StackPanel>
+        <Button x:Name="btnAgregarReceta" Content="Agregar Receta" HorizontalAlignment="Left" Margin="383,156,0,0" VerticalAlignment="Top" Height="20" Width="88" Click="btnAgregarReceta_Click"/>
+        <Button x:Name="btnEditarReceta" Content="Editar Receta" HorizontalAlignment="Left" Margin="485,156,0,0" VerticalAlignment="Top" Width="80" Click="btnEditarReceta_Click"/>
+        <Button x:Name="btnEliminarReceta" Content="Eliminar Receta" HorizontalAlignment="Left" Margin="581,156,0,0" VerticalAlignment="Top" Width="91" Click="btnEliminarReceta_Click"/>
+        <Button x:Name="btnConfirmarEditar" Content="Editar confirmar" HorizontalAlignment="Left" Margin="383,119,0,0" VerticalAlignment="Top" Width="101" Click="btnConfirmarEditar_Click"/>
+        <Button x:Name="btnCancelarEditar" Content="Cancelar" HorizontalAlignment="Left" Margin="495,119,0,0" VerticalAlignment="Top" Width="60" Click="btnCancelarEditar_Click"/>
 
         <!-- ComboBox para seleccionar el tipo de examen -->
 
