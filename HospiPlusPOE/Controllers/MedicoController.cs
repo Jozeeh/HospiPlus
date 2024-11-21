@@ -88,22 +88,27 @@ namespace HospiPlusPOE.Controllers
             }
         }
 
-        public bool EditarMedico(int idMedico, int idUsuario, string especialidad, string numeroLicencia)
+        //==============================
+        // MÉTODO PARA EDITAR MÉDICO
+        //==============================
+        public bool EditarMedico(int idMedico, string especialidad, string numeroLicencia)
         {
             try
             {
                 using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
                 {
                     conexion.Open();
-                    string query = "UPDATE Medico SET ID_FK_Usuario = @ID_FK_Usuario, Especialidad = @Especialidad, NumeroLicencia = @NumeroLicencia WHERE ID_Medico = @ID_Medico";
+                    string query = "UPDATE Medico SET Especialidad = @Especialidad, NumeroLicencia = @NumeroLicencia WHERE ID_Medico = @ID_Medico;";
 
                     using (SqlCommand command = new SqlCommand(query, conexion))
                     {
                         // Pasar los valores necesarios}
                         command.Parameters.AddWithValue("@Especialidad", especialidad);
                         command.Parameters.AddWithValue("@NumeroLicencia", numeroLicencia);
+                        command.Parameters.AddWithValue("@ID_Medico", idMedico);
 
                         command.ExecuteNonQuery();
+                        MessageBox.Show("Médico editado correctamente", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
                 return true;
@@ -118,40 +123,41 @@ namespace HospiPlusPOE.Controllers
 
 
         public bool DesactivarMedico(int idMedico) {
-        bool medicoDesactivado = false;
-
-        try
-        {
-            // Preguntar al usuario si desea desactivar al médico
-            MessageBoxResult result = MessageBox.Show("¿Está seguro que desea desactivar este médico?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (result == MessageBoxResult.Yes)
+            bool medicoDesactivado = false;
+            try
             {
-                using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
+                // Preguntar al usuario si desea desactivar al médico
+                MessageBoxResult result = MessageBox.Show("¿Está seguro que desea desactivar este médico?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
                 {
-                    conexion.Open();
-                    string query = "UPDATE Medico SET Estado = 'Inactivo' WHERE ID_Medico = @ID_Medico";
-
-                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    using (SqlConnection conexion = new SqlConnection(_credencialesConexion))
                     {
-                        command.Parameters.AddWithValue("@ID_Medico", idMedico);
+                        conexion.Open();
+                        string query = "UPDATE Usuario " +
+                            "SET Estado = 'Inactivo' " +
+                            "WHERE ID_Usuario = (SELECT ID_FK_Usuario FROM Medico WHERE ID_Medico = @ID_Medico);";
 
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Médico desactivado correctamente", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Information);
-                        medicoDesactivado = true;
+                        using (SqlCommand command = new SqlCommand(query, conexion))
+                        {
+                            command.Parameters.AddWithValue("@ID_Medico", idMedico);
+
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Médico desactivado correctamente", "Mensaje", MessageBoxButton.OK, MessageBoxImage.Information);
+                            medicoDesactivado = true;
+                        }
+
+                        conexion.Close();
                     }
-
-                    conexion.Close();
                 }
             }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Error al desactivar médico: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al desactivar médico: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return medicoDesactivado;
         }
 
-        return medicoDesactivado;
     }
-
-}
 }

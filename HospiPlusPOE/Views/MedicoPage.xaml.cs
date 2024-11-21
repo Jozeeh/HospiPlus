@@ -48,101 +48,58 @@ namespace PlusHospi.Views
             MedicoDataGrid.ItemsSource = Medicos;
         }
 
-        private void btnAgregarMedico_Click(object sender, RoutedEventArgs e)
-        {
-            // Verificar si los campos están completos
-            if (cmbEspecialidad.SelectedItem == null || string.IsNullOrWhiteSpace(txtLicencia.Text))
-            {
-                MessageBox.Show("Por favor, complete todos los campos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            var especialidadSeleccionada = ((ComboBoxItem)cmbEspecialidad.SelectedItem).Content.ToString();
-            var numeroLicencia = txtLicencia.Text;
-
-            var nuevoMedico = new Medico
-            {
-                Especialidad = especialidadSeleccionada,
-                NumeroLicencia = numeroLicencia
-            };
-
-            // Llamar al método de agregar médico
-            //  new MedicoController().AgregarMedico(
-            //    nuevoMedico.Especialidad,
-              //  nuevoMedico.NumeroLicencia
-            //);
-
-            // Mostrar médicos y limpiar campos
-            MostrarMedicos();
-            LimpiarCampos();
-        }
-
-
         private void btnEditarMedico_Click(object sender, RoutedEventArgs e)
         {
             if (MedicoDataGrid.SelectedItem is not Medico medicoSeleccionado)
             {
                 MessageBox.Show("Seleccione un médico para editar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }
-
-            IDMedicoSeleccionado = medicoSeleccionado.ID_Medico;
-            txtLicencia.Text = medicoSeleccionado.NumeroLicencia;
-
-            // Establecer la especialidad seleccionada en el ComboBox
-            var especialidadSeleccionada = medicoSeleccionado.Especialidad;
-            var itemEspecialidad = cmbEspecialidad.Items.Cast<ComboBoxItem>()
-                                                        .FirstOrDefault(item => item.Content.ToString() == especialidadSeleccionada);
-            if (itemEspecialidad != null)
+            } else
             {
-                cmbEspecialidad.SelectedItem = itemEspecialidad;
-            }
+                //Asignamos los valores a los combobox y id medico
+                IDMedicoSeleccionado = medicoSeleccionado.ID_Medico;
+                cmbEspecialidad.Text = medicoSeleccionado.Especialidad;
+                txtLicencia.Text = medicoSeleccionado.NumeroLicencia;
 
-            ConfirmarEditarButton.Visibility = Visibility.Visible;
-            CancelarEdicionButton.Visibility = Visibility.Visible;
+                ConfirmarEditarButton.Visibility = Visibility.Visible;
+                CancelarEdicionButton.Visibility = Visibility.Visible;
 
-            AgregarBtn.IsEnabled = false;
-            EditarBtn.IsEnabled = false;
-            DesactivarBtn.IsEnabled = false;
+                EditarBtn.IsEnabled = false;
+                DesactivarBtn.IsEnabled = false;
+            } 
         }
-
 
         private void btnConfirmarEditar_Click(object sender, RoutedEventArgs e)
         {
-            // Verificar si los campos están completos
-            if (cmbEspecialidad.SelectedItem == null || string.IsNullOrWhiteSpace(txtLicencia.Text))
+            // Obtenemos los valores
+            int idMedico = IDMedicoSeleccionado;
+            string especialidadSeleccionada = cmbEspecialidad.Text;
+            string numeroLicencia = txtLicencia.Text;
+
+            //Verificamos que los campos no estén vacíos
+            if (string.IsNullOrWhiteSpace(especialidadSeleccionada) || string.IsNullOrWhiteSpace(numeroLicencia))
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }
-
-            var especialidadSeleccionada = ((ComboBoxItem)cmbEspecialidad.SelectedItem).Content.ToString();
-            var numeroLicencia = txtLicencia.Text;
-
-            var medicoActualizado = new Medico
+            } else
             {
-                ID_Medico = IDMedicoSeleccionado,
-                Especialidad = especialidadSeleccionada,
-                NumeroLicencia = numeroLicencia
-            };
+                // Ejecutamos el método de editar médico
+                bool medicoEditado = new MedicoController().EditarMedico(IDMedicoSeleccionado, especialidadSeleccionada, numeroLicencia);
 
-            // Llamar al método de editar médico
-            //   new MedicoController().EditarMedico(
-            //     medicoActualizado.ID_Medico,
-            //   medicoActualizado.Especialidad,
-               // medicoActualizado.NumeroLicencia
-            //);
+                // Si se edito
+                if (medicoEditado == true)
+                {
+                    // Mostrar médicos y limpiar campos
+                    MostrarMedicos();
+                    LimpiarCampos();
 
-            // Mostrar médicos y limpiar campos
-            MostrarMedicos();
-            LimpiarCampos();
-
-            // Ocultar botones y habilitar otros
-            ConfirmarEditarButton.Visibility = Visibility.Hidden;
-            CancelarEdicionButton.Visibility = Visibility.Hidden;
-            AgregarBtn.IsEnabled = true;
-            EditarBtn.IsEnabled = true;
-            DesactivarBtn.IsEnabled = true;
+                    // Ocultar botones y habilitar otros
+                    ConfirmarEditarButton.Visibility = Visibility.Hidden;
+                    CancelarEdicionButton.Visibility = Visibility.Hidden;
+                    EditarBtn.IsEnabled = true;
+                    DesactivarBtn.IsEnabled = true;
+                }
+            }
         }
 
 
@@ -152,20 +109,8 @@ namespace PlusHospi.Views
 
             ConfirmarEditarButton.Visibility = Visibility.Hidden;
             CancelarEdicionButton.Visibility = Visibility.Hidden;
-            AgregarBtn.IsEnabled = true;
             EditarBtn.IsEnabled = true;
             DesactivarBtn.IsEnabled = true;
-        }
-
-        private void MedicoDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (MedicoDataGrid.SelectedItem != null)
-            {
-                var medicoSeleccionado = (Medico)MedicoDataGrid.SelectedItem;
-
-                cmbEspecialidad.Text = medicoSeleccionado.Especialidad;
-                txtLicencia.Text = medicoSeleccionado.NumeroLicencia;
-            }
         }
 
         private void btnDesactivarMedico_Click(object sender, RoutedEventArgs e)
@@ -174,16 +119,17 @@ namespace PlusHospi.Views
             {
                 MessageBox.Show("Seleccione un médico para desactivar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }
-
-            try
+            } else
             {
-                new MedicoController().DesactivarMedico(medicoSeleccionado.ID_Medico);
-                MostrarMedicos();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al desactivar el médico: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    new MedicoController().DesactivarMedico(medicoSeleccionado.ID_Medico);
+                    MostrarMedicos();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al desactivar el médico: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
